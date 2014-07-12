@@ -152,24 +152,23 @@ $app->post('/locations', function() use ($app) {
 	$app->response->setBody($locations);
 });
 
-$app->get('/users', function() use ($app) {
-    $users = User::all()->toJson();
-    $app->response->headers->set('Content-Type', 'application/json');
-    $app->response->setBody($users);
+$app->post('/locations/:id/parked', function($id) use ($app) {
+	// Get post variables
+	$vehicle = $app->request->post('vehicle', 'car');
+	$latitude = $app->request->post('latitude');
+	$longitude = $app->request->post('longitude');
+});
+
+$app->post('/locations/:id/unparked', function($id) use ($app) {
+	// Get post variables
+	$vehicle = $app->request->post('vehicle', 'car');
+	$latitude = $app->request->post('latitude');
+	$longitude = $app->request->post('longitude');
 });
 
 $app->run();
 
 /*
-
-
-
-
-GET /api/locations/{id}/parked
-
-GET /api/locations/{id}/full
-
-
 Status 500
 {
 	"success": true|false,
