@@ -14,9 +14,13 @@ $app->post('/locations', function() use ($app) {
 	$latitude = isset($body['latitude']) ? $body['latitude'] : 0;
 	$longitude = isset($body['longitude']) ? $body['longitude'] : 0;
 
+	// Determine parking bays field based on vehicle type
+	$baysField = $vehicleType === 'car' ? 'vehicle_bays' : 'motorcycle_bays';
+
 	// Get nearest 20 parking locations
 	$parkingLocations = ParkingLocation::with('parkingTimes')
 		->select('parking_locations.*', Capsule::raw("ROUND(1000 * 6371 * ACOS(COS(RADIANS({$latitude})) * COS(RADIANS(latitude)) * COS(RADIANS(longitude) - RADIANS({$longitude})) + SIN(RADIANS({$latitude})) * SIN(RADIANS(latitude)))) AS distance"))
+		->where($baysField, '>', 0)
 		->orderBy('distance')
 		->take(20)
 		->get();
@@ -26,7 +30,6 @@ $app->post('/locations', function() use ($app) {
 		'success' => true,
 		'currency' => 'aud',
 		'symbol' => '$',
-		'locations' => [],
 	];
 
 	// Iterate through locations
