@@ -14,36 +14,6 @@ angular.module('parkme.controllers', [])
         $state.go(state, params, { reload: true });
     };
 
-    // Form data for the login modal
-    // $scope.loginData = {};
-
-    // Create the login modal that we will use later
-    /*  $ionicModal.fromTemplateUrl('templates/login.html', {
-        scope: $scope
-      }).then(function(modal) {
-        $scope.modal = modal;
-      });*/
-
-    // Triggered in the login modal to close it
-    $scope.closeLogin = function() {
-            $scope.modal.hide();
-        },
-
-        // Open the login modal
-        $scope.login = function() {
-            $scope.modal.show();
-        };
-
-    // Perform the login action when the user submits the login form
-    $scope.doLogin = function() {
-        console.log('Doing login', $scope.loginData);
-
-        // Simulate a login delay. Remove this and replace with your login
-        // code if using a login system
-        $timeout(function() {
-            $scope.closeLogin();
-        }, 1000);
-    };
 })
 
 // home page/landing page
@@ -75,25 +45,32 @@ angular.module('parkme.controllers', [])
 
 // list of locations
 .controller('LocationsCtrl', function($scope, $timeout, $ionicNavBarDelegate, session, locations) {
-    $scope.locations = [{
-        title: 'Robertson St',
-        id: 1
-    }, {
-        title: 'Ann St',
-        id: 2
-    }, {
-        title: 'Dubstep St',
-        id: 3
-    }, {
-        title: 'Indie St',
-        id: 4
-    }, {
-        title: 'Rap St',
-        id: 5
-    }, {
-        title: 'Cowbell St',
-        id: 6
-    }];
+    
+    // filter
+    $scope.filter = {
+        sort: 'nearest'
+    };
+
+
+    // distance/price breakdown (this could by dynamic in the future)
+    $scope.breakdown = {
+        distance: [100, 250, 500, 1],
+        price: [0, 1, 3, 5]
+    };
+
+    // filter results by type
+    $scope.filterByDistance = function(breakdown){
+        return function(parkingLocation) {
+           return parkingLocation < breakdown;
+        } 
+    };
+
+    // filter results by type
+    $scope.filterByPrice = function(breakdown){
+        return function(parkingLocation) {
+           return parkingLocation < breakdown;
+        } 
+    };
 
     // set params for the locations request api
     var params = {
@@ -104,8 +81,6 @@ angular.module('parkme.controllers', [])
 
     // hide/show loading state
     $scope.busy = true;
-    $ionicNavBarDelegate.showBar(false);
-
     $timeout(function(){
         $ionicNavBarDelegate.showBar(false);
     });
@@ -116,7 +91,7 @@ angular.module('parkme.controllers', [])
     $timeout(function(){
 
         locations.query(params).then(function(data) {
-            $scope.locations = locations.get();
+            $scope.parkingLocations = locations.get();
         }, function(errors){
             // display error modal
             // !!! to be implemented
