@@ -4,20 +4,22 @@ require __DIR__.'/../vendor/autoload.php';
 
 use Illuminate\Support\Facades\DB;
 
-$app = new Slim\Slim();
+$app = new Slim\Slim;
+$app->add(new Slim\Middleware\ContentTypes);
 
 $app->post('/locations', function() use ($app) {
-	// Get post variables
-	$vehicleType = $app->request->post('vehicleType', 'car');
-	$latitude = $app->request->post('latitude');
-	$longitude = $app->request->post('longitude');
+	// Get request variables
+	$body = $app->request->getBody();
+	$vehicleType = isset($body['vehicleType']) ? $body['vehicleType'] : 'car';
+	$latitude = isset($body['latitude']) ? $body['latitude'] : 0;
+	$longitude = isset($body['longitude']) ? $body['longitude'] : 0;
 
 	//
-	$locations = Location::with('restrictions')
+	/*$locations = Location::with('restrictions')
 		->select('locations.*', DB::raw("ROUND(1000 * 6371 * ACOS(COS(RADIANS({$latitude})) * COS(RADIANS(latitude)) * COS(RADIANS(longitude) - RADIANS({$longitude})) + SIN(RADIANS({$latitude})) * SIN(RADIANS(latitude)))) AS distance"))
 		->orderBy('distance');
 
-	echo '<pre>'; var_dump($locations); echo '</pre>'; die;
+	echo '<pre>'; var_dump($locations); echo '</pre>'; die;*/
 
 
 	// Get locations
@@ -98,10 +100,11 @@ $app->post('/locations', function() use ($app) {
 });
 
 $app->post('/locations/:id/parked', function($id) use ($app) {
-	// Get post variables
-	$vehicleType = $app->request->post('vehicleType', 'car');
-	$latitude = $app->request->post('latitude');
-	$longitude = $app->request->post('longitude');
+	// Get request variables
+	$body = $app->request->getBody();
+	$vehicleType = isset($body['vehicleType']) ? $body['vehicleType'] : 'car';
+	$latitude = isset($body['latitude']) ? $body['latitude'] : 0;
+	$longitude = isset($body['longitude']) ? $body['longitude'] : 0;
 
 	// Create new parked record
 	$parked = Parked::create([
@@ -119,10 +122,11 @@ $app->post('/locations/:id/parked', function($id) use ($app) {
 });
 
 $app->post('/locations/:id/unparked', function($id) use ($app) {
-	// Get post variables
-	$vehicleType = $app->request->post('vehicleType', 'car');
-	$latitude = $app->request->post('latitude');
-	$longitude = $app->request->post('longitude');
+	// Get request variables
+	$body = $app->request->getBody();
+	$vehicleType = isset($body['vehicleType']) ? $body['vehicleType'] : 'car';
+	$latitude = isset($body['latitude']) ? $body['latitude'] : 0;
+	$longitude = isset($body['longitude']) ? $body['longitude'] : 0;
 
 	// Create new unparked record
 	$unparked = Unparked::create([
