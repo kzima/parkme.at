@@ -7,7 +7,7 @@ $energized:                       #f0b840 !default;
 $assertive:                       #ef4e3a !default;
 $royal:                           #8a6de9 !default;
 $dark:                            #444 !default;
-$gray-light2:					  lighten(#000, 60%);   // #999
+$gray-light:					  lighten(#000, 60%);   // #999
 
 
 // The path for our ionicons font files, relative to the built CSS in www/css
@@ -58,6 +58,8 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 	}
 }
 
-#card-sign-post {
-	padding: 50px;
+#detail {
+	.card-sign-post {
+		padding: 20px;
+	}
 }

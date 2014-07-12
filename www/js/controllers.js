@@ -54,7 +54,7 @@ angular.module('parkme.controllers', [])
 })
 
 // complete Page
-.controller('LocationCtrl', function($scope, $stateParams) {
+.controller('CompleteCtrl', function($scope, $stateParams) {
 })
 
 // about
