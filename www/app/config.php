@@ -10,16 +10,14 @@ $capsule = new Capsule;
 $capsule->addConnection(array(
     'driver'    => 'mysql',
     'host'      => 'localhost',
-    'database'  => 'govhack',
+    'database'  => 'park_me',
     'username'  => 'root',
     'password'  => 'password',
     'charset'   => 'utf8',
     'collation' => 'utf8_general_ci',
     'prefix'    => ''
 ));
-
 $capsule->setAsGlobal();
-
 $capsule->bootEloquent();
 
 // Set timezone
