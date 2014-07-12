@@ -11,6 +11,13 @@ class Unparked extends Eloquent {
 	 */
 	protected $table = 'unparked';
 
+	/**
+	 * The attributes that aren't mass assignable.
+	 *
+	 * @var array
+	 */
+	protected $guarded = array('id');
+
 
 	/**
 	 * Get location.
