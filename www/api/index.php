@@ -12,14 +12,6 @@ $app->post('/locations', function() use ($app) {
 	$latitude = $app->request->post('latitude');
 	$longitude = $app->request->post('longitude');
 
-	//
-	$locations = Location::with('restrictions')
-		->select('locations.*', DB::raw("ROUND(1000 * 6371 * ACOS(COS(RADIANS({$latitude})) * COS(RADIANS(latitude)) * COS(RADIANS(longitude) - RADIANS({$longitude})) + SIN(RADIANS({$latitude})) * SIN(RADIANS(latitude)))) AS distance"))
-		->orderBy('distance');
-
-	echo '<pre>'; var_dump($locations); echo '</pre>'; die;
-
-
 	// Get locations
 	$locations = json_encode([
 		'success' => true,
@@ -43,7 +35,7 @@ $app->post('/locations', function() use ($app) {
 					'unit' => 'hr',
 				],
 				'rate' => [
-					'operational' => true,
+					'operational' => false,
 					'value' => 2.70,
 				],
 				'spaces' => 10,

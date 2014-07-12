@@ -48,27 +48,29 @@ angular.module('parkme.controllers', [])
     
     // filter
     $scope.filter = {
-        sort: 'nearest'
+        sort: 'nearest',
+        duration: 12,
+        symbol: '$',
+        distance: 'm'
     };
-
 
     // distance/price breakdown (this could by dynamic in the future)
     $scope.breakdown = {
-        distance: [100, 250, 500, 1],
-        price: [0, 1, 3, 5]
+        distance: [{min: 0, max:100}, {min: 100, max:250}, {min: 250, max:500}, {min: 500, max:1000}],
+        price: [{min: 0, max:1}, {min: 1, max:2}, {min: 2, max:3}, {min: 3, max:5}]
     };
 
     // filter results by type
-    $scope.filterByDistance = function(breakdown){
-        return function(parkingLocation) {
-           return parkingLocation < breakdown;
+    $scope.filterByDistance = function(distance){
+        return function(parking) {
+           return (parking.distance.value >= distance.min && parking.distance.value < distance.max);
         } 
     };
 
     // filter results by type
-    $scope.filterByPrice = function(breakdown){
-        return function(parkingLocation) {
-           return parkingLocation < breakdown;
+    $scope.filterByPrice = function(price){
+        return function(parking) {
+           return (parking.rate.value >= price.min && parking.rate.value < price.max);
         } 
     };
 
@@ -91,7 +93,7 @@ angular.module('parkme.controllers', [])
     $timeout(function(){
 
         locations.query(params).then(function(data) {
-            $scope.parkingLocations = locations.get();
+            $scope.parkingLocations = locations.getByDuration($scope.filter.duration);
         }, function(errors){
             // display error modal
             // !!! to be implemented
@@ -101,6 +103,15 @@ angular.module('parkme.controllers', [])
             $ionicNavBarDelegate.showBar(true);
         });
     }, 0);
+
+    /** 
+     * watch duration and filter results
+     */
+    $scope.$watch('filter.duration', function(newVal, oldVal){
+        if (oldVal !== newVal) {
+            $scope.parkingLocations = locations.getByDuration($scope.filter.duration);
+        }
+    });
 })
 
 // detail Page

@@ -7662,6 +7662,9 @@ a.button {
 .text-muted {
   color: #999999; }
 
+.item .badge {
+  right: 10px; }
+
 .badges {
   position: absolute;
   right: 10px;

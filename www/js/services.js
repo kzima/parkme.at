@@ -4,15 +4,17 @@ angular.module('parkme')
  * location model
  * @return {Object}
  */
-.factory('Location', function() {
+.factory('Location', function($filter) {
 	var Location = function(locationData) {
 	    angular.extend(this, locationData);
-	    this.id = 1;
-	}
-
-	Location.prototype.alert = function() {
-	    console.log('alert', this.id);
-	}
+	    this.title = this.street;
+        this.title += (this.suburb) ? ', ' + this.suburb : '';
+        this.distanceFrom = this.distance.value + ' ' + this.distanceUnit;
+        this.descriptionDuration = this.maximumStay.value + ' ';
+        this.descriptionDuration += (this.maximumStay.unit === 1) ? (this.maximumStay.unit) : (this.maximumStay.unit) + 's';
+        this.price = (this.rate.operational || this.rate.value === 0) ? $filter('currency')(this.rate.value, this.rate.unit) + '/' + this.rate.period : 'free';
+        this.descriptionPrice = $filter('currency')(this.rate.value, this.rate.unit);
+    };
 
 	return Location;
 })
@@ -25,16 +27,37 @@ angular.module('parkme')
 .service('locations', function($q, $http, Location) {
     var locations = [];
     return {
+        /**
+         * api call to get locations collection
+         * @return {Object} Promise
+         */ 
         query: function(params) {
             return $http.post('api/locations', params, {cache: true}).then(function(data) {
-                angular.forEach(data, function(data, key) {
+                angular.forEach(data.data.locations, function(data, key) {
                     var location = new Location(data);
                     locations.push(location);
                 });
             });
         },
+        /**
+         * get all locations
+         * @return {[type]}
+         */
         get: function() {
-        	return locations;
+            return locations;
+        },
+        /**
+         * get by parking duration
+         * @return {[type]}
+         */
+        getByDuration: function(limit) {
+            var subset = [];
+            angular.forEach(locations, function(location, key){
+                if (location.maximumStay.value <= limit) {
+                    subset.push(location);
+                }
+            });
+        	return subset;
         }
     }
 })

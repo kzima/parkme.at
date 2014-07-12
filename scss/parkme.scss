@@ -38,6 +38,9 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 }
 
 // badges
+.item .badge {
+	right: 10px;
+}
 .badges {
 	position: absolute;
 	right: 10px;

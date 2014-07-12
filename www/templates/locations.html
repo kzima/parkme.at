@@ -1,4 +1,4 @@
-<ion-view title="Locations" id="locations">
+<ion-view title="Parkings" id="locations">
     
     <ion-nav-buttons side="left">
         <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
@@ -19,7 +19,7 @@
             <section class="padding row">
                 <div class="range col-50">
                     1H
-                    <input type="range" name="duration" step="1" min="1" max="12">
+                    <input type="range" name="duration" step="1" min="1" max="12" ng-model="filter.duration">
                     12H
                 </div>
                 <div class="button-bar col-offset-10 col-40">
@@ -30,36 +30,30 @@
 
             <!-- Parking locations by distance-->
             <aricle ng-repeat="distance in breakdown.distance" ng-show="filter.sort == 'nearest'">
-                <div class="item item-divider">
-                    Candy Bars Distance
+                <div class="item item-divider" ng-show="(parkingLocations | filter:filterByDistance(distance)).length > 0">
+                    < {{distance.max | number:0 }}{{filter.distance}}
                 </div>
                 <ion-list>
-                    <ion-item ng-repeat="parkingLocation in parkingLocations | filter:breakdownFilter(distance)" href="#/app/locations/{{location.id}}">
-                        <h2>{{location.title}}</h2>
-                        <p>Back off, man. I'm a scientist.</p>
-                        <div class="badges">
-                            <span class="badge badge-assertive badge-left">4 hr</span>
-                            <span class="badge badge-assertive badge-middle">$3/hr</span>
-                            <span class="badge badge-assertive badge-right">0.1km</span>
-                        </div>
+                    <ion-item ng-repeat="parking in parkingLocations | filter:filterByDistance(distance)">
+                    <!-- <ion-item ng-repeat="parking in parkingLocations | filter:filterByDistance(distance)" href="#/app/locations/{{parking.id}}">-->
+                        <h2>{{parking.title}}</h2>
+                        <p>{{parking.descriptionDuration}}</p>
+                        <span class="badge badge-assertive">{{parking.distanceFrom}}</span>
                     </ion-item>
                 </ion-list>
             </aricle>
 
             <!-- Parking locations by price-->
             <aricle ng-repeat="price in breakdown.price" ng-hide="filter.sort == 'nearest'">
-                <div class="item item-divider">
-                    Candy Bars Cheapest
+                <div class="item item-divider" ng-show="(parkingLocations | filter:filterByPrice(price)).length > 0">
+                    < {{price.max | currency:filter.symbol}}
                 </div>
                 <ion-list>
-                    <ion-item ng-repeat="parkingLocation in parkingLocations | filter:breakdownFilter(price)" href="#/app/locations/{{location.id}}">
-                        <h2>{{location.title}}</h2>
-                        <p>Back off, man. I'm a scientist.</p>
-                        <div class="badges">
-                            <span class="badge badge-assertive badge-left">4 hr</span>
-                            <span class="badge badge-assertive badge-middle">$3/hr</span>
-                            <span class="badge badge-assertive badge-right">0.1km</span>
-                        </div>
+                    <ion-item ng-repeat="parking in parkingLocations | filter:filterByPrice(price)">
+                    <!-- <ion-item ng-repeat="parking in parkingLocations | filter:filterByPrice(price)" href="#/app/locations/{{parking.id}}">-->
+                        <h2>{{parking.title}}</h2>
+                        <p>{{parking.descriptionPrice}}</p>
+                        <span class="badge badge-assertive">{{parking.price}}</span>
                     </ion-item>
                 </ion-list>
             </aricle>
