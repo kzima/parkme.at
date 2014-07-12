@@ -67,7 +67,7 @@ class ParkingMeterSeed {
 		    	// Extract start and end day and time
 		    	preg_match('/^(?P<start_time>\d+(:\d+)?(AM|PM))\-(?P<end_time>\d+(:\d+)?(AM|PM))\((?P<start_day>[A-Z]{3})(\-(?P<end_day>[A-Z]{3}))?\)$/i', $restriction, $matches);
 
-		    	// Check for end date
+		    	// Check for end day and use start date when not specified
 		    	if ( ! isset($matches['end_day'])) {
 		    		$matches['end_day'] = $matches['start_day'];
 		    	}
