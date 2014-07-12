@@ -13,11 +13,11 @@ class LocationMigration
         
         Capsule::schema()->create('locations', function($table) {
             $table->increments('id')->unsigned();
-            $table->string('type', 20);                                     // Onstreet / carpark
+            $table->string('type', 20);
             $table->smallInteger('meter_number')->unsigned();
             $table->string('street');
             $table->string('suburb');
-            $table->string('locality');                                     // Local description
+            $table->string('locality');
             $table->tinyInteger('maximum_stay')->unsigned();
             $table->smallInteger('vehicle_bays')->unsigned();
             $table->smallInteger('motorcycle_bays')->unsigned();

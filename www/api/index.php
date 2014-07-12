@@ -6,7 +6,7 @@ $app = new Slim\Slim();
 
 $app->post('/locations', function() use ($app) {
 	// Get post variables
-	$vehicle = $app->request->post('vehicle', 'car');
+	$vehicleType = $app->request->post('vehicleType', 'car');
 	$latitude = $app->request->post('latitude');
 	$longitude = $app->request->post('longitude');
 
@@ -17,7 +17,7 @@ $app->post('/locations', function() use ($app) {
 	// Get locations
 	$locations = json_encode([
 		'success' => true,
-		'vehicle' => $vehicle,
+		'vehicleType' => $vehicleType,
 		'currentLocation' => [
 			'latitude' => $latitude,
 			'longitude' => $longitude,
@@ -154,14 +154,14 @@ $app->post('/locations', function() use ($app) {
 
 $app->post('/locations/:id/parked', function($id) use ($app) {
 	// Get post variables
-	$vehicle = $app->request->post('vehicle', 'car');
+	$vehicleType = $app->request->post('vehicleType', 'car');
 	$latitude = $app->request->post('latitude');
 	$longitude = $app->request->post('longitude');
 });
 
 $app->post('/locations/:id/unparked', function($id) use ($app) {
 	// Get post variables
-	$vehicle = $app->request->post('vehicle', 'car');
+	$vehicleType = $app->request->post('vehicleType', 'car');
 	$latitude = $app->request->post('latitude');
 	$longitude = $app->request->post('longitude');
 });
