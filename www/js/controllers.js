@@ -92,12 +92,12 @@ angular.module('parkme.controllers', [])
      */
     $timeout(function(){
 
-        locations.query(params).then(function(data) {
+        locations.query(params).then(function() {
             $scope.parkingLocations = locations.getByDuration($scope.filter.duration);
         }, function(errors){
             // display error modal
             // !!! to be implemented
-        }).finally(function(data){
+        }).finally(function(){
              // disable busy state
             $scope.busy = false;
             $ionicNavBarDelegate.showBar(true);
@@ -115,8 +115,8 @@ angular.module('parkme.controllers', [])
 })
 
 // detail Page
-.controller('LocationCtrl', function($scope, $stateParams) {
-
+.controller('LocationCtrl', function($scope, $stateParams, locations) {
+    $scope.parking = locations.getById($stateParams.id);
 })
 
 // complete Page

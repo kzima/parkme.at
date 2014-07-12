@@ -5,7 +5,8 @@
     	<section class="row">
 	        <div class="card card-sign-post text-center col-offset-10 col-80">
 			  <div class="item item-text-wrap">
-			    <h1>4P</h1>
+			  	{{parking | json}}
+			    <h1>{{location.maximumStay.value}}</h1>
 			    <p>METER</p>
 			    <h2>7<sub>AM</sub> - 10<sub>PM</sub></h2>
 			    <h3>MON-FRI</h3>
@@ -27,7 +28,7 @@
 
     <!-- action -->
     <div class="bar bar-footer bar-balanced">
-      <div class="title" ui-sref="app.complete">Park Me Here</div>
+      <div class="title" ui-sref="complete">Park Me Here</div>
     </div>
 
 </ion-view>

@@ -1,8 +1,4 @@
 <ion-view title="Parkings" id="locations">
-    
-    <ion-nav-buttons side="left">
-        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
-    </ion-nav-buttons>
 
     <!-- loading state -->
     <section ng-show="busy">
@@ -34,8 +30,8 @@
                     < {{distance.max | number:0 }}{{filter.distance}}
                 </div>
                 <ion-list>
-                    <ion-item ng-repeat="parking in parkingLocations | filter:filterByDistance(distance)">
-                    <!-- <ion-item ng-repeat="parking in parkingLocations | filter:filterByDistance(distance)" href="#/app/locations/{{parking.id}}">-->
+                    <!--<ion-item ng-repeat="parking in parkingLocations | filter:filterByDistance(distance)">-->
+                    <ion-item ng-repeat="parking in parkingLocations | filter:filterByDistance(distance)" href="#/locations/{{parking.id}}">
                         <h2>{{parking.title}}</h2>
                         <p>{{parking.descriptionDuration}}</p>
                         <span class="badge badge-assertive">{{parking.distanceFrom}}</span>
@@ -49,8 +45,8 @@
                     < {{price.max | currency:filter.symbol}}
                 </div>
                 <ion-list>
-                    <ion-item ng-repeat="parking in parkingLocations | filter:filterByPrice(price)">
-                    <!-- <ion-item ng-repeat="parking in parkingLocations | filter:filterByPrice(price)" href="#/app/locations/{{parking.id}}">-->
+                    <!--<ion-item ng-repeat="parking in parkingLocations | filter:filterByPrice(price)">-->
+                    <ion-item ng-repeat="parking in parkingLocations | filter:filterByPrice(price)" href="#/locations/{{parking.id}}">
                         <h2>{{parking.title}}</h2>
                         <p>{{parking.descriptionPrice}}</p>
                         <span class="badge badge-assertive">{{parking.price}}</span>

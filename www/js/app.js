@@ -23,78 +23,51 @@ angular.module('parkme', ['ionic', 'parkme.controllers'])
 .config(function($stateProvider, $urlRouterProvider) {
     $stateProvider
 
-        .state('app', {
-        url: "/app",
-        abstract: true,
-        templateUrl: "templates/menu.html",
-        controller: 'AppCtrl'
-    })
-
     /**
      * home page
      */
-    .state('app.home', {
+    .state('home', {
         url: "/home",
-        views: {
-            'menuContent': {
-                templateUrl: "templates/home.html",
-                controller: 'HomeCtrl'
-            }
-        }
+        templateUrl: "templates/home.html",
+        controller: 'HomeCtrl'
     })
 
     /**
      * A list of locations
      */
-    .state('app.locations', {
+    .state('locations', {
         url: "/locations",
-        views: {
-            'menuContent': {
-                templateUrl: "templates/locations.html",
-                controller: 'LocationsCtrl'
-            }
-        }
+        templateUrl: "templates/locations.html",
+        controller: 'LocationsCtrl'
     })
 
     /**
      * Detail location page
      */
-    .state('app.location', {
+    .state('location', {
         url: "/locations/:id",
-        views: {
-            'menuContent': {
-                templateUrl: "templates/location.html",
-                controller: 'LocationCtrl'
-            }
-        }
+        templateUrl: "templates/location.html",
+        controller: 'LocationCtrl'
     })
 
     /**
      * complete page (successful/unsuccessful)
      */
-    .state('app.complete', {
+    .state('complete', {
         url: "/complete",
-        views: {
-            'menuContent': {
-                templateUrl: "templates/complete.html",
-                controller: 'CompleteCtrl'
-            }
-        }
+        templateUrl: "templates/complete.html",
+        controller: 'CompleteCtrl'
     })
 
     /**
      * About app info
      */
-    .state('app.about', {
+    .state('about', {
         url: "/about",
-        views: {
-            'menuContent': {
-                templateUrl: "templates/about.html",
-                controller: 'AboutCtrl'
-            }
-        }
+        templateUrl: "templates/about.html",
+        controller: 'AboutCtrl'
     });
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/app/home');
+    $urlRouterProvider.otherwise('/home');
 });

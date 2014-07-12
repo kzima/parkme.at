@@ -6,6 +6,7 @@ angular.module('parkme')
  */
 .factory('Location', function($filter) {
 	var Location = function(locationData) {
+        this.id = parseInt(this.id);
 	    angular.extend(this, locationData);
 	    this.title = this.street;
         this.title += (this.suburb) ? ', ' + this.suburb : '';
@@ -33,22 +34,40 @@ angular.module('parkme')
          */ 
         query: function(params) {
             return $http.post('api/locations', params, {cache: true}).then(function(data) {
+                locations = [];
                 angular.forEach(data.data.locations, function(data, key) {
                     var location = new Location(data);
                     locations.push(location);
                 });
             });
         },
+
         /**
          * get all locations
-         * @return {[type]}
+         * @return {Object}
          */
         get: function() {
             return locations;
         },
+
+        /**
+         * get one location by id
+         * @return {Object}
+         */
+        getById: function(id) {
+            var result = {};
+            angular.forEach(locations, function(location, key){
+                if (location.id == id) {
+                    result = location;
+                }
+            });
+            debugger;
+            return result;
+        },
+
         /**
          * get by parking duration
-         * @return {[type]}
+         * @return {Object}
          */
         getByDuration: function(limit) {
             var subset = [];
