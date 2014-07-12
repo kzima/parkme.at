@@ -10,5 +10,33 @@ class Restriction extends Eloquent {
 	 * @var string
 	 */
 	protected $table = 'restrictions';
+
+	/**
+	 * The accessors to append to the model's array form.
+	 *
+	 * @var array
+	 */
+	protected $appends = ['is_applicable'];
+
+
+	/**
+	 * Get location.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+	 */
+	public function location()
+	{
+		return $this->belongsTo('Location');
+	}
+
+	/**
+	 * Check if parking restriction is applicable on current day / time.
+	 * 
+	 * @return bool
+	 */
+	public function getIsApplicableAttribute()
+	{
+		// 
+	}
 	
 }

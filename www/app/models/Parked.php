@@ -11,4 +11,15 @@ class Parked extends Eloquent {
 	 */
 	protected $table = 'parked';
 	
+
+	/**
+	 * Get location.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+	 */
+	public function location()
+	{
+		return $this->belongsTo('Location');
+	}
+
 }
