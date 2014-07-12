@@ -1,54 +1,32 @@
-# Slim & Eloquent
+This is an addon starter template for the [Ionic Framework](http://ionicframework.com/).
 
-The Slim PHP micro framework paired with Laravel's Illuminate Database toolkit.
-See: https://github.com/kladd/slim-eloquent
+## How to use this template
 
-## Getting started
+*This template does not work on its own*. It is missing the Ionic library, and AngularJS.
+
+To use this, either create a new ionic project using the ionic node.js utility, or copy and paste this into an existing Cordova project and download a release of Ionic separately.
+
+### With the Ionic tool:
+
+Take the name after `ionic-starter-`, and that is the name of the template to be used when using the `ionic start` command below:
 
 ```bash
-# Download composer
-curl -s https://getcomposer.org/installer | php
-
-# Install project dependencies
-php composer.phar install
+$ sudo npm install -g ionic cordova
+$ ionic start myApp sidemenu
 ```
 
-Edit the database configuration in `app/config.php` to match your settings.
+Then, to run it, cd into `myApp` and run:
 
-Now set your server's document root to the `public/` directory.
-
-The end.
-
-## Database Migration and Seeding
-
-The novice script provides a primitive means of migrating and seeding the database.
-Follow the `UserMigration.php` and `UserSeed.php` templates located in `app/database/` for
-your own migrations/seeds.
-
-To migrate and seed your database:
 ```bash
-# Migrate
-php novice migrate
-
-# Seed
-php novice seed
-
-# Migrate then seed
-php novice migrate --seed
+$ ionic platform add ios
+$ ionic build ios
+$ ionic emulate ios
 ```
 
-> __Note:__
-> These just run whatever is in the `run()` function of each seed or migration.
-There's no support for updating or rolling back unless you put it there.
+Substitute ios for android if not on a Mac, but if you can, the ios development toolchain is a lot easier to work with until you need to do anything custom to Android.
 
-## Documentation
+## Demo
+http://plnkr.co/edit/0RXSDB?p=preview
 
-#### Slim framework
-http://docs.slimframework.com
-
-#### Eloquent ORM
-http://laravel.com/docs/eloquent
-
-and
-
-https://github.com/illuminate/database/blob/master/README.md
+## Issues
+Issues have been disabled on this repo, if you do find an issue or have a question consider posting it on the [Ionic Forum](http://forum.ionicframework.com/).  Or else if there is truly an error, follow our guidelines for [submitting an issue](http://ionicframework.com/contribute/#issues) to the main Ionic repository. On the other hand, pull requests are welcome here!
