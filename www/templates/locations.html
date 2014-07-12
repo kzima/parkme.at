@@ -1,0 +1,37 @@
+<ion-view title="Locations" id="locations">
+
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+
+    <!-- content -->
+    <ion-content class="has-header">
+
+        <!-- Filter Results -->
+        <section class="padding row">
+          <div class="range col-50">
+            Any 
+            <input type="range" name="duration" step="1" min="0" max="12">
+            12hr
+          </div>
+          <div class="button-bar col-offset-10 col-40">
+            <a class="button">km</a>
+            <a class="button">$</a>
+          </div>
+        </section>
+
+        <!-- Parking locations -->
+        <ion-list>
+            <ion-item ng-repeat="location in locations" href="#/app/locations/{{location.id}}">
+                <h2>{{location.title}}</h2>
+                <p>Back off, man. I'm a scientist.</p>
+                <div class="badges">
+                  <span class="badge badge-assertive badge-left">4 hr</span>
+                  <span class="badge badge-assertive badge-middle">$3/hr</span>
+                  <span class="badge badge-assertive badge-right">0.1km</span>
+                </div>
+            </ion-item>
+        </ion-list>
+
+    </ion-content>
+</ion-view>

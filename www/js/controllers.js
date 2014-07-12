@@ -33,16 +33,30 @@ angular.module('parkme.controllers', [])
   };
 })
 
-.controller('PlaylistsCtrl', function($scope) {
-  $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
+// home page/landing page
+.controller('HomeCtrl', function($scope, $stateParams) {
+})
+
+// list of locations
+.controller('LocationsCtrl', function($scope) {
+  $scope.locations = [
+    { title: 'Robertson St', id: 1 },
+    { title: 'Ann St', id: 2 },
+    { title: 'Dubstep St', id: 3 },
+    { title: 'Indie St', id: 4 },
+    { title: 'Rap St', id: 5 },
+    { title: 'Cowbell St', id: 6 }
   ];
 })
 
-.controller('PlaylistCtrl', function($scope, $stateParams) {
+// detail Page
+.controller('LocationCtrl', function($scope, $stateParams) {
+})
+
+// complete Page
+.controller('CompleteCtrl', function($scope, $stateParams) {
+})
+
+// about
+.controller('AboutCtrl', function($scope, $stateParams) {
 })
