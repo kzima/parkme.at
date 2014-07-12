@@ -21,26 +21,26 @@ class ParkingMeterSeed {
             	continue;
             }
 
-			// Create location
-			$location = new Location;
-			$location->type = 'on_street';
-			$location->meter_number = $data[0];
-			$location->street = ucwords(strtolower($data[2]));
-			$location->suburb = ucwords(strtolower($data[3]));
-			$location->locality = $data[11];
-			$location->maximum_stay = $data[4];
-			$location->vehicle_bays = $data[12];
-			$location->motorcycle_bays = $data[13];
-            $location->vehicle_peak_rate = $data[9];
-            $location->vehicle_off_peak_rate = $data[10];
-            $location->motorcycle_rate = $data[14];
-            $location->tariff_zone = $data[8];
-            $location->restrictions = ucwords(strtolower($data[5]));
-            $location->latitude = $data[16];
-            $location->longitude = $data[15];
-            $location->save();
+			// Create parking location
+            $parkingLocation = ParkingLocation::create([
+            	'type' => 'on_street',
+				'meter_number' => $data[0],
+				'street' => ucwords(strtolower($data[2])),
+				'suburb' => ucwords(strtolower($data[3])),
+				'locality' => $data[11],
+				'maximum_stay' => $data[4],
+				'vehicle_bays' => $data[12],
+				'motorcycle_bays' => $data[13],
+	            'vehicle_peak_rate' => $data[9],
+	            'vehicle_off_peak_rate' => $data[10],
+	            'motorcycle_rate' => $data[14],
+	            'tariff_zone' => $data[8],
+	            'restrictions' => ucwords(strtolower($data[5])),
+	            'latitude' => $data[16],
+	            'longitude' => $data[15],
+            ]);
 
-            // Cleanse operational day
+			// Cleanse operational day
 		    if (strcasecmp($data[6], 'daily') === 0) {
 		    	$data[6] = 'MON-SUN';
 		    }	
@@ -55,31 +55,31 @@ class ParkingMeterSeed {
 		    $data[7] = preg_replace('/\s?(&|,)\s?/', ',', $data[7]);
 
 			// Split data on comma separator    
-		    $restrictions = explode(',', $data[7]);
+		    $parkingTimes = explode(',', $data[7]);
 
-		    // Parse restrictions
-		    foreach ($restrictions as $restriction) {
+		    // Parse parking times
+		    foreach ($parkingTimes as $parkingTime) {
 		    	// Append operational day to operational time if day range not specified
-		    	if ( ! preg_match('/\(.*\)/', $restriction)) {
-		    		$restriction .= '(' . $data[6] . ')';
+		    	if ( ! preg_match('/\(.*\)/', $parkingTime)) {
+		    		$parkingTime .= '(' . $data[6] . ')';
 		    	}
 
 		    	// Extract start and end day and time
-		    	preg_match('/^(?P<start_time>\d+(:\d+)?(AM|PM))\-(?P<end_time>\d+(:\d+)?(AM|PM))\((?P<start_day>[A-Z]{3})(\-(?P<end_day>[A-Z]{3}))?\)$/i', $restriction, $matches);
+		    	preg_match('/^(?P<start_time>\d+(:\d+)?(AM|PM))\-(?P<end_time>\d+(:\d+)?(AM|PM))\((?P<start_day>[A-Z]{3})(\-(?P<end_day>[A-Z]{3}))?\)$/i', $parkingTime, $matches);
 
 		    	// Check for end day and use start date when not specified
 		    	if ( ! isset($matches['end_day'])) {
 		    		$matches['end_day'] = $matches['start_day'];
 		    	}
 
-		    	// Create restriction
-		    	$restriction = new Restriction;
-		    	$restriction->location_id = $location->id;
-		    	$restriction->start_day = ucfirst(strtolower($matches['start_day']));
-		    	$restriction->end_day = ucfirst(strtolower($matches['end_day']));
-		    	$restriction->start_time = date('H:i:s', strtotime($matches['start_time']));
-		    	$restriction->end_time = date('H:i:s', strtotime($matches['end_time']));
-		    	$restriction->save();
+		    	// Create parking time
+		    	$parkingTime = ParkingTime::create([
+		    		'parking_location_id' => $parkingLocation->id,
+			    	'start_day' => ucfirst(strtolower($matches['start_day'])),
+			    	'end_day' => ucfirst(strtolower($matches['end_day'])),
+			    	'start_time' => date('H:i:s', strtotime($matches['start_time'])),
+			    	'end_time' => date('H:i:s', strtotime($matches['end_time'])),
+		    	]);
 		    }
 		}
 

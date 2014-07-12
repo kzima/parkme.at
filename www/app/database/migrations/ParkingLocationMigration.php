@@ -3,15 +3,15 @@
 use Illuminate\Database\Capsule\Manager as Capsule;
 
 /**
- * Location table migration.
+ * Parking location table migration.
  */
-class LocationMigration 
+class ParkingLocationMigration 
 {
     function run()
     {
-        Capsule::schema()->dropIfExists('locations');
+        Capsule::schema()->dropIfExists('parking_locations');
         
-        Capsule::schema()->create('locations', function($table) {
+        Capsule::schema()->create('parking_locations', function($table) {
             $table->increments('id')->unsigned();
             $table->string('type', 20);
             $table->smallInteger('meter_number')->unsigned();
