@@ -14,7 +14,7 @@ class ParkedMigration
         Capsule::schema()->create('parked', function($table) {
             $table->increments('id');
             $table->integer('location_id')->unsigned();
-            $table->string('vehicle');
+            $table->string('vehicle_type');
             $table->timestamps();
             $table->index('location_id');
         });

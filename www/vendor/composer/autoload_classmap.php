@@ -6,5 +6,9 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Location' => $baseDir . '/app/models/Location.php',
+    'Parked' => $baseDir . '/app/models/Parked.php',
+    'Restriction' => $baseDir . '/app/models/Restriction.php',
+    'Unparked' => $baseDir . '/app/models/Unparked.php',
     'User' => $baseDir . '/app/models/User.php',
 );
