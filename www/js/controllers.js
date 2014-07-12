@@ -2,9 +2,6 @@ angular.module('parkme.controllers', [])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout, $state, settings) {
 
-    // initalize global settings
-    settings.init();
-
     /**
      * handle redirect across app
      * @param  {Object} state
@@ -17,29 +14,48 @@ angular.module('parkme.controllers', [])
 })
 
 // home page/landing page
-.controller('HomeCtrl', function($scope, session, settings) {
+.controller('HomeCtrl', function($scope, $timeout, $ionicNavBarDelegate, session, settings) {
+
+    // clear session
+    session.remove('currentLocation');
+    session.remove('currentAddress');
 
     // set the location for current device
-    settings.setCurrentLocation();
+    $scope.placeholder = "Type an address";
+    settings.setCurrentLocation().then(function(){
+        // input placeholder
+        if (settings.isDeviceLocated()){
+            $scope.placeholder = "Use my current location";
+        }
+    });
 
     // Vechicle type (car|motorcycle)
     $scope.params = {
         vechicleType: "car", 
-        currentLocation: {
-            longitude: 0,
-            latitude: 0
-        }
+        currentLocation: {}
     };
 
-    // update vehicle data in the session 
-    $scope.$watch('params.vechicleType', function(){
-        session.set('vechicleType', $scope.params.vechicleType);
-    }, true);
+    // wait until page loads
+    $timeout(function(){
+        // remove header
+        $ionicNavBarDelegate.showBar(false);
+    });
 
-    // update vehicle data in the session 
-    $scope.$watch('params.currentLocation', function(){
-        session.set('currentLocation', $scope.params.currentLocation);
-    }, true);
+    /**
+     * redirect to next page
+     * save location in localstorage
+     */
+    $scope.nextActionFn = function(){
+
+        // update vehicle data in the session 
+        session.set('vechicleType', $scope.params.vechicleType);
+
+        // update currentLocation
+        session.set('currentLocation', settings.get());
+
+        // redirect to next page
+        $scope.goTo('locations');
+    }
 
 })
 
@@ -83,8 +99,13 @@ angular.module('parkme.controllers', [])
 
     // hide/show loading state
     $scope.busy = true;
+
+    // wait until page loads
     $timeout(function(){
+        // remove header
         $ionicNavBarDelegate.showBar(false);
+        // input placeholder
+        $scope.placeholder = "Use my current location";
     });
 
     /**

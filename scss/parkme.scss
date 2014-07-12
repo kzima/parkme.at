@@ -9,6 +9,12 @@ $royal:                           #8a6de9 !default;
 $dark:                            #444 !default;
 $gray-light:					  lighten(#000, 60%);   // #999
 
+// brand colors
+$brand-green: #00b259;
+$brand-lighter-gray: #efefef;
+$brand-light-gray: #8a8585;
+$brand-dark-gray: #222222;
+
 
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
@@ -53,6 +59,16 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 }
 
 // PAGES
+#home {
+	.ion-android-location {
+		color: $brand-green;
+	}
+	.item-floating-label {
+		border: 0;
+		overflow: none;
+	}
+}
+
 #locations {
 	ion-item {
 		p {

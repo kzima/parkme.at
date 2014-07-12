@@ -7675,6 +7675,13 @@ a.button {
   float: left;
   margin-right: 5px; }
 
+#home .ion-android-location {
+  color: #00b259; }
+
+#home .item-floating-label {
+  border: 0;
+  overflow: none; }
+
 #locations ion-item p {
   margin-bottom: 0; }
 

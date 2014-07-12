@@ -8,10 +8,15 @@
 
         <!-- current location -->
         <section class="list list-inset">
-            <label class="item item-input">
-                <i class="icon ion-search placeholder-icon"></i>
-                <input type="text" placeholder="Current Location">
+
+            <label class="item item-input item-floating-label">
+                <span class="input-label">Where would you like to park?</span>
+                <label class="item item-input">
+                   <i class="icon ion-android-location placeholder-icon"></i>
+                   <google-places placeholder="{{placeholder}}"></google-places>
+                </label>
             </label>
+
         </section>
 
         <!-- toggle vechicle type -->
@@ -25,7 +30,7 @@
 
         <!-- Park Me button -->
         <section class="padding">
-            <button class="button button-block button-positive" ui-sref="locations">Park Me</button>
+            <button class="button button-block button-positive" ng-click="nextActionFn()" >Park Me</button>
         </section>
 
     </ion-content>

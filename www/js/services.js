@@ -22,7 +22,7 @@ angular.module('parkme')
 
 /**
 * locations collection
-* @param  {[type]} $q
+* @param  {Object} $q
 * @return {Object}
 */
 .service('locations', function($q, $http, Location) {
@@ -118,34 +118,53 @@ angular.module('parkme')
  * @return {Object}
  */
 .service('settings', function(session, $q) {
+    var currentLocation = {};
     return {
-        // set current location
-        setCurrentLocation: function() {
-            // clean any local session if any for user loation
-            session.set('currentLocation',{longitude: 0, latitude: 0});
+
+        /**
+         * set current location based on device location
+         */
+        setCurrentLocation: function(location) {
 
             // use network location
             var deferred = $q.defer();
-            navigator.geolocation.getCurrentPosition(
-                function(position) {
-                    // resolve deferred
-                    deferred.resolve(position);
-                    if (position.coords) {
-                    	session.set('currentLocation', {
-                    		longitude: position.coords.longitude,
-                    		latitude: position.coords.latitude
-                    	});
-                    }
-                },
-                function() {
+
+            if (location) {
+                currentLocation = location;
+            } else {
+                navigator.geolocation.getCurrentPosition(
+                    function(position) {
+                        // resolve deferred
+                        deferred.resolve(position);
+                        if (position.coords) {
+                            currentLocation = {
+                                longitude: position.coords.longitude,
+                                latitude: position.coords.latitude
+                            };
+                        }
+                    },
+                    function() {
+                    // reject
                     deferred.reject('Error getting location');
-            });
+                });
+            }
             return deferred.promise;
         },
-        init: function() {
-            if (!session.get('currentLocation')){
-                session.set('currentLocation', {});
-            }
+
+        /**
+         * get current location
+         * @return {Object}
+         */
+        get: function(){
+            return currentLocation;
+        },
+
+        /**
+         * check if device has been located
+         * @return {Object}
+         */
+        isDeviceLocated: function(){
+            return (currentLocation.latitude && currentLocation.longitude);
         }
     };
 })
