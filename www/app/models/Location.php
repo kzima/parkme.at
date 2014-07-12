@@ -17,6 +17,13 @@ class Location extends Eloquent {
 	 * @var array
 	 */
 	protected $appends = ['is_restricted'];
+
+	/**
+	 * The attributes that aren't mass assignable.
+	 *
+	 * @var array
+	 */
+	protected $guarded = array('id');
 	
 
 	/**

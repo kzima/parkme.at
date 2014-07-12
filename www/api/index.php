@@ -102,6 +102,20 @@ $app->post('/locations/:id/parked', function($id) use ($app) {
 	$vehicleType = $app->request->post('vehicleType', 'car');
 	$latitude = $app->request->post('latitude');
 	$longitude = $app->request->post('longitude');
+
+	// Create new parked record
+	$parked = Parked::create([
+		'location_id' => $id,
+		'vehicle_type' => $vehicleType,
+		'latitude' => $latitude,
+		'longitude' => $longitude,
+	]);
+
+	// Prepare response
+	$app->response->headers->set('Content-Type', 'application/json');
+	$app->response->setBody(json_encode([
+		'success' => true,
+	]));
 });
 
 $app->post('/locations/:id/unparked', function($id) use ($app) {
@@ -109,6 +123,20 @@ $app->post('/locations/:id/unparked', function($id) use ($app) {
 	$vehicleType = $app->request->post('vehicleType', 'car');
 	$latitude = $app->request->post('latitude');
 	$longitude = $app->request->post('longitude');
+
+	// Create new unparked record
+	$unparked = Unparked::create([
+		'location_id' => $id,
+		'vehicle_type' => $vehicleType,
+		'latitude' => $latitude,
+		'longitude' => $longitude,
+	]);
+
+	// Prepare response
+	$app->response->headers->set('Content-Type', 'application/json');
+	$app->response->setBody(json_encode([
+		'success' => true,
+	]));
 });
 
 $app->run();

@@ -18,6 +18,13 @@ class Restriction extends Eloquent {
 	 */
 	protected $appends = ['is_applicable'];
 
+	/**
+	 * The attributes that aren't mass assignable.
+	 *
+	 * @var array
+	 */
+	protected $guarded = array('id');
+
 
 	/**
 	 * Get location.
