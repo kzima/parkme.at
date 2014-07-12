@@ -16,7 +16,7 @@ class ParkingLocation extends Eloquent {
 	 *
 	 * @var array
 	 */
-	protected $appends = ['is_timed'];
+	protected $appends = ['is_timed', 'is_timed_peak', 'is_timed_off_peak'];
 
 	/**
 	 * The attributes that aren't mass assignable.
@@ -57,16 +57,55 @@ class ParkingLocation extends Eloquent {
 	}
 
 	/**
-	 * Check if location has active parking time.
+	 * Check if parking location has active parking time.
 	 * 
 	 * @return bool
 	 */
 	public function getIsTimedAttribute()
 	{
-		// Iterate through restrictions
+		// Iterate through parking times
 		foreach ($this->parkingTimes as $parkingTime) {
-			// Check if parking time operational for current day / time
-			if ($parkingTimes->is_operational) {
+			// Check if parking time is currently operational
+			if ($parkingTime->is_operational) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * Check if parking location has active peak parking time.
+	 * Peak time is for meter spaces that operate outside of:
+	 * Monday - Friday, 7pm - 10pm
+	 * Saturday - Sunday, 7am - 7pm
+	 * 
+	 * @return bool
+	 */	
+	public function getIsTimedPeakAttribute()
+	{
+		// Iterate through parking times
+		foreach ($this->parkingTimes as $parkingTime) {
+			// Check if parking time is currently operational and covers peak hours
+			if ($parkingTime->is_operational && $parkingTime->is_peak) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * Check if parking location has active off peak parking time.
+	 *
+ 	 * @return bool
+	 */
+	public function getIsTimedOffPeakAttribute()
+	{
+		// Iterate through parking times
+		foreach ($this->parkingTimes as $parkingTime) {
+			// Check if parking time is currently operational and covers off peak hours
+			if ($parkingTime->is_operational && $parkingTime->is_off_peak) {
 				return true;
 			}
 		}
@@ -92,9 +131,22 @@ class ParkingLocation extends Eloquent {
 	 * @return int
 	 */
 	public function currentVehicleRate($vehicleType = 'car')
-	{
-		// Rate per hour for meter spaces that operate 7pm -10pm Mon – Fri and 7am – 7pm Saturday, Sunday
-		return null;
+	{	
+		// Check if vehicle type is car and parking location has active peak parking time
+		if ($vehicleType === 'car' && $this->is_timed_peak) {
+			return floatval($this->vehicle_peak_rate);
+		}
+		// Check if vehicle type is car and parking location has active off peak parking time
+		elseif ($vehicleType === 'car' && $this->is_timed_off_peak) {
+			return floatval($this->vehicle_off_peak_rate);
+		}
+
+		// Check if vehicle type is motorcycle and parking location has active parking time
+		if ($vehicleType === 'motorcycle' && $this->is_timed) {
+			return floatval($this->motorcycle_rate);
+		}
+
+		return 0;
 	}
 
 }

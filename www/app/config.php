@@ -12,7 +12,7 @@ $capsule->addConnection(array(
     'host'      => 'localhost',
     'database'  => 'park_me',
     'username'  => 'root',
-    'password'  => '',
+    'password'  => 'password',
     'charset'   => 'utf8',
     'collation' => 'utf8_general_ci',
     'prefix'    => ''
