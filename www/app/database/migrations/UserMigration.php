@@ -3,16 +3,18 @@
 use Illuminate\Database\Capsule\Manager as Capsule;
 
 /**
- * Example migration for use with "novice"
+ * Users table migration.
  */
-class UserMigration {
+class UserMigration 
+{
     function run()
     {
         Capsule::schema()->dropIfExists('users');
+
         Capsule::schema()->create('users', function($table) {
             $table->increments('id');
-            $table->string('first_name');
-            $table->string('last_name');
+            $table->string('first_name')->nullable();
+            $table->string('last_name')->nullable();
             $table->string('email');
             $table->timestamps();
         });
