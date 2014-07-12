@@ -12,7 +12,6 @@ $app->post('/locations', function() use ($app) {
 
 	/*
 		Everything in 500m or 1km, maximum 25 results
-		-27.5000, 153.0167
 	*/
 
 	// Get locations
@@ -23,6 +22,9 @@ $app->post('/locations', function() use ($app) {
 			'latitude' => $latitude,
 			'longitude' => $longitude,
 		],
+		'currency' => 'aud',
+		'distanceUnit' => 'km',
+		'parkingDuration' => [0, 12],
 		'cheapest' => [
 			[
 				'id' => 2,
@@ -30,7 +32,6 @@ $app->post('/locations', function() use ($app) {
 				'suburb' => 'Woolloongabba',
 				'distance' => [
 					'value' => 12,
-					'unit' => 'km',
 				],
 				'maximumStay' => [
 					'value' => 2,
@@ -39,7 +40,6 @@ $app->post('/locations', function() use ($app) {
 				'cost' => [
 					'operational' => true,
 					'value' => 1.50,
-					'currency' => 'AUD',
 				],
 				'spaces' => 12,
 				'restrictions' => [
@@ -59,7 +59,6 @@ $app->post('/locations', function() use ($app) {
 				'suburb' => 'Fortitude Valley',
 				'distance' => [
 					'value' => 10,
-					'unit' => 'km',
 				],
 				'maximumStay' => [
 					'value' => 4,
@@ -68,7 +67,6 @@ $app->post('/locations', function() use ($app) {
 				'cost' => [
 					'operational' => true,
 					'value' => 2.70,
-					'currency' => 'AUD',
 				],
 				'spaces' => 10,
 				'restrictions' => [
@@ -94,7 +92,6 @@ $app->post('/locations', function() use ($app) {
 				'suburb' => 'Fortitude Valley',
 				'distance' => [
 					'value' => 10,
-					'unit' => 'km',
 				],
 				'maximumStay' => [
 					'value' => 4,
@@ -103,7 +100,6 @@ $app->post('/locations', function() use ($app) {
 				'cost' => [
 					'operational' => true,
 					'value' => 2.70,
-					'currency' => 'AUD',
 				],
 				'spaces' => 10,
 				'restrictions' => [
@@ -127,7 +123,6 @@ $app->post('/locations', function() use ($app) {
 				'suburb' => 'Woolloongabba',
 				'distance' => [
 					'value' => 12,
-					'unit' => 'km',
 				],
 				'maximumStay' => [
 					'value' => 2,
@@ -136,7 +131,6 @@ $app->post('/locations', function() use ($app) {
 				'cost' => [
 					'operational' => true,
 					'value' => 1.50,
-					'currency' => 'AUD',
 				],
 				'spaces' => 12,
 				'restrictions' => [
