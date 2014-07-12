@@ -2,6 +2,8 @@
 
 require __DIR__.'/../vendor/autoload.php';
 
+use Illuminate\Support\Facades\DB;
+
 $app = new Slim\Slim();
 
 $app->post('/locations', function() use ($app) {
@@ -10,9 +12,13 @@ $app->post('/locations', function() use ($app) {
 	$latitude = $app->request->post('latitude');
 	$longitude = $app->request->post('longitude');
 
-	/*
-		Everything in 500m or 1km, maximum 25 results
-	*/
+	//
+	$locations = Location::with('restrictions')
+		->select('locations.*', DB::raw("ROUND(1000 * 6371 * ACOS(COS(RADIANS({$latitude})) * COS(RADIANS(latitude)) * COS(RADIANS(longitude) - RADIANS({$longitude})) + SIN(RADIANS({$latitude})) * SIN(RADIANS(latitude)))) AS distance"))
+		->orderBy('distance');
+
+	echo '<pre>'; var_dump($locations); echo '</pre>'; die;
+
 
 	// Get locations
 	$locations = json_encode([
@@ -23,7 +29,7 @@ $app->post('/locations', function() use ($app) {
 			'longitude' => $longitude,
 		],
 		'currency' => 'aud',
-		'distanceUnit' => 'km',
+		'distanceUnit' => 'm',
 		'locations' => [
 			[
 				'id' => 1,
@@ -36,7 +42,7 @@ $app->post('/locations', function() use ($app) {
 					'value' => 4,
 					'unit' => 'hr',
 				],
-				'cost' => [
+				'rate' => [
 					'operational' => true,
 					'value' => 2.70,
 				],
@@ -67,7 +73,7 @@ $app->post('/locations', function() use ($app) {
 					'value' => 2,
 					'unit' => 'hr',
 				],
-				'cost' => [
+				'rate' => [
 					'operational' => true,
 					'value' => 1.50,
 				],

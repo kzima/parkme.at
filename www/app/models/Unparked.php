@@ -10,5 +10,16 @@ class Unparked extends Eloquent {
 	 * @var string
 	 */
 	protected $table = 'unparked';
+
+
+	/**
+	 * Get location.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+	 */
+	public function location()
+	{
+		return $this->belongsTo('Location');
+	}
 	
 }
