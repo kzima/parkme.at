@@ -1,34 +1,35 @@
-<ion-view title="Home">
+<ion-view title="Home" id="home">
     <ion-nav-buttons side="left">
         <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
     </ion-nav-buttons>
     <ion-content class="has-header">
 
-    	<!-- logo -->
-    	<section class="padding">
-    		<img class="full-image" src="http://ionicframework.com/img/docs/delorean.jpg">
-    	</section>
-
-    	<!-- current location -->
-        <section class="list list-inset">
-          <label class="item item-input">
-            <i class="icon ion-search placeholder-icon"></i>
-            <input type="text" placeholder="Current Location">
-          </label>
+        <!-- logo -->
+        <section class="padding">
+            <img class="full-image" src="http://ionicframework.com/img/docs/delorean.jpg">
         </section>
 
-        <!-- button -->
-        <section class="padding">
-        	<button class="button button-block button-positive" ui-sref="app.locations">Park Me</button>
-      	</section>
+        <!-- current location -->
+        <section class="list list-inset">
+            <label class="item item-input">
+                <i class="icon ion-search placeholder-icon"></i>
+                <input type="text" placeholder="Current Location">
+            </label>
+        </section>
 
-      	<!-- toggle vechicle type -->
-      	<section class="padding">
-	      	<div class="button-bar">
-    			  <a class="button">Car</a>
-    			  <a class="button">Motorcycle</a>
-    			</div>
-    		</section>
+        <!-- toggle vechicle type -->
+        <section class="padding">
+            <div class="button-bar">
+
+                <a class="button" ng-click="params.vechicleType = 'car'" ng-class="{active: params.vechicleType == 'car'}">Car</a>
+                <a class="button" ng-click="params.vechicleType = 'motorcycle'" ng-class="{active: params.vechicleType == 'motorcycle'}">Motorcycle</a>
+            </div>
+        </section>
+
+        <!-- Park Me button -->
+        <section class="padding">
+            <button class="button button-block button-positive" ui-sref="app.locations">Park Me</button>
+        </section>
 
     </ion-content>
 </ion-view>

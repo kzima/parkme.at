@@ -7,79 +7,94 @@
 angular.module('parkme', ['ionic', 'parkme.controllers'])
 
 .run(function($ionicPlatform) {
-  $ionicPlatform.ready(function() {
-    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-    // for form inputs)
-    if(window.cordova && window.cordova.plugins.Keyboard) {
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-    }
-    if(window.StatusBar) {
-      // org.apache.cordova.statusbar required
-      StatusBar.styleDefault();
-    }
-  });
+    $ionicPlatform.ready(function() {
+        // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+        // for form inputs)
+        if (window.cordova && window.cordova.plugins.Keyboard) {
+            cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+        }
+        if (window.StatusBar) {
+            // org.apache.cordova.statusbar required
+            StatusBar.styleDefault();
+        }
+    });
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
-  $stateProvider
+    $stateProvider
 
-    .state('app', {
-      url: "/app",
-      abstract: true,
-      templateUrl: "templates/menu.html",
-      controller: 'AppCtrl'
+        .state('app', {
+        url: "/app",
+        abstract: true,
+        templateUrl: "templates/menu.html",
+        controller: 'AppCtrl'
     })
 
+    /**
+     * home page
+     */
     .state('app.home', {
-      url: "/home",
-      views: {
-        'menuContent' :{
-          templateUrl: "templates/home.html"
+        url: "/home",
+        views: {
+            'menuContent': {
+                templateUrl: "templates/home.html",
+                controller: 'HomeCtrl'
+            }
         }
-      }
     })
 
+    /**
+     * A list of locations
+     */
     .state('app.locations', {
-      url: "/locations",
-      views: {
-        'menuContent' :{
-          templateUrl: "templates/locations.html",
-          controller: 'LocationsCtrl'
+        url: "/locations",
+        views: {
+            'menuContent': {
+                templateUrl: "templates/locations.html",
+                controller: 'LocationsCtrl'
+            }
         }
-      }
     })
 
+    /**
+     * Detail location page
+     */
     .state('app.location', {
-      url: "/locations/:id",
-      views: {
-        'menuContent' :{
-          templateUrl: "templates/location.html",
-          controller: 'LocationCtrl'
+        url: "/locations/:id",
+        views: {
+            'menuContent': {
+                templateUrl: "templates/location.html",
+                controller: 'LocationCtrl'
+            }
         }
-      }
     })
 
+    /**
+     * complete page (successful/unsuccessful)
+     */
     .state('app.complete', {
-      url: "/complete",
-      views: {
-        'menuContent' :{
-          templateUrl: "templates/complete.html",
-          controller: 'CompleteCtrl'
+        url: "/complete",
+        views: {
+            'menuContent': {
+                templateUrl: "templates/complete.html",
+                controller: 'CompleteCtrl'
+            }
         }
-      }
     })
 
+    /**
+     * About app info
+     */
     .state('app.about', {
-      url: "/about",
-      views: {
-        'menuContent' :{
-          templateUrl: "templates/about.html",
-          controller: 'AboutCtrl'
+        url: "/about",
+        views: {
+            'menuContent': {
+                templateUrl: "templates/about.html",
+                controller: 'AboutCtrl'
+            }
         }
-      }
-    })
-    ;
-  // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/home');
-});
+    });
 
+    // if none of the above states are matched, use this as the fallback
+    $urlRouterProvider.otherwise('/app/home');
+});
