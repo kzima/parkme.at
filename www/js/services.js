@@ -168,7 +168,7 @@ angular.module('parkme')
     };
 })
 
-.service('navigation', function(session, Location) {
+.service('navigation', function(session, settings) {
     var iOSversion = function() {
         if (/iP(hone|od|ad)/.test(navigator.platform)) {
             // supports iOS 2.0 and later: <http://bit.ly/TJjs1V>
@@ -178,7 +178,7 @@ angular.module('parkme')
     };
     return {
         go: function() {
-            var origin = session.get('location');
+            var origin = settings.get('location');
             var destination = session.get('chosenLocation');
             location = {
                 lng: 153.023449,
