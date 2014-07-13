@@ -154,7 +154,7 @@ angular.module('parkme.controllers', [])
             latitude: $scope.parking.location.latitude
         };
         var params = {
-            vechicleType: session.get("car"), 
+            vechicleType: session.get("vechicleType"), 
             longitude: chosenLocation.longitude,
             latitude: chosenLocation.latitude,
         };
