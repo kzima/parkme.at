@@ -296,8 +296,9 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 		h1 {
 			font-family: 'brand-semibold', Sans-Serif;
-			font-size: 26px;
+			font-size: 25px;
 			font-weight: 600;
+			line-height: 25px;
 			margin: 0 0 25px;
 			text-transform: uppercase;
 		}
@@ -307,6 +308,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 			font-family: 'brand-semibold', Sans-Serif;
 			font-size: 92px;
 			font-weight: 600;
+			line-height: 92px;
 			text-transform: uppercase;
 		}
 
@@ -314,18 +316,20 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 			font-family: 'brand-light', Sans-Serif;
 			font-size: 30px;
 			font-weight: 300;
-			margin: 0 0 50px;
+			line-height: 30px;
+			margin: 0 0 30px;
 			text-transform: uppercase;
 		}
 
 		.parking-times {
+			margin: 0 0 30px;
+
 			li {
 				display: inline-block;
 				list-style: none;
+				margin: 0 10px;
 			}
 		}
-
-
 
 		h4.time {
 			.from, .to {
@@ -335,7 +339,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 				position: relative;
 
 				.hours {
-					font-family: 'brand-semibold', Sans-Serif;
+					font-family: 'brand-light', Sans-Serif;
 					font-size: 36px;
 					font-weight: 600;
 				}

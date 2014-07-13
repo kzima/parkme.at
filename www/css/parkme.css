@@ -7874,8 +7874,9 @@ a.button {
 
 #detail .sign-post h1 {
   font-family: 'brand-semibold', Sans-Serif;
-  font-size: 26px;
+  font-size: 25px;
   font-weight: 600;
+  line-height: 25px;
   margin: 0 0 25px;
   text-transform: uppercase; }
 
@@ -7884,18 +7885,24 @@ a.button {
   font-family: 'brand-semibold', Sans-Serif;
   font-size: 92px;
   font-weight: 600;
+  line-height: 92px;
   text-transform: uppercase; }
 
 #detail .sign-post h3 {
   font-family: 'brand-light', Sans-Serif;
   font-size: 30px;
   font-weight: 300;
-  margin: 0 0 50px;
+  line-height: 30px;
+  margin: 0 0 30px;
   text-transform: uppercase; }
+
+#detail .sign-post .parking-times {
+  margin: 0 0 30px; }
 
 #detail .sign-post .parking-times li {
   display: inline-block;
-  list-style: none; }
+  list-style: none;
+  margin: 0 10px; }
 
 #detail .sign-post h4.time .from, #detail .sign-post h4.time .to {
   display: inline-block;
@@ -7904,7 +7911,7 @@ a.button {
   position: relative; }
 
 #detail .sign-post h4.time .from .hours, #detail .sign-post h4.time .to .hours {
-  font-family: 'brand-semibold', Sans-Serif;
+  font-family: 'brand-light', Sans-Serif;
   font-size: 36px;
   font-weight: 600; }
 

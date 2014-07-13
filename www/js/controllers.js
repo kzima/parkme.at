@@ -119,7 +119,7 @@ angular.module('parkme.controllers', [])
             // !!! to be implemented
         }).finally(function(){
              // disable busy state
-            $scope.busy = false;
+            //$scope.busy = false;
             $ionicNavBarDelegate.showBar(true);
         });
     }, 0);
@@ -138,6 +138,7 @@ angular.module('parkme.controllers', [])
 .controller('LocationCtrl', function($scope, $stateParams, $timeout, $http, locations, session) {
     // get parking object
     $scope.parking = locations.getById($stateParams.id);
+
     // clear chosen Location
     session.set('chosenLocation', {});
 
