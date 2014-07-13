@@ -140,6 +140,7 @@ angular.module('parkme.controllers', [])
 .controller('LocationCtrl', function($scope, $stateParams, $timeout, $http, locations, session, settings) {
     // get parking object
     $scope.parking = locations.getById($stateParams.id);
+
     // clear chosen Location
     session.set('chosenLocation', {});
 

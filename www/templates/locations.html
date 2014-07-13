@@ -1,13 +1,17 @@
 <ion-view id="locations">
 
     <!-- loading state -->
-    <section ng-show="busy">
-        Loading...
+    <section id="loading" ng-show="busy">
+        <div class="row message">
+            <div class="col">
+                <img src="/img/loading_2x.gif" alt="Loading..." />
+                <p>Finding the nearest parking<br />spaces for you.</p>
+            </div>
+        </div>
     </section>
 
     <!-- loaded state / show locations-->
     <section ng-hide="busy">
-
         <!-- content -->
         <ion-content class="has-header">
 

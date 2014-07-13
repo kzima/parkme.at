@@ -1,17 +1,16 @@
-<ion-view title="" hide-back-button="true">
+<ion-view id="complete" hide-back-button="true">
     <ion-nav-buttons side="left">
         <button class="button button-clear" ng-click="goTo('home')">
             <i class="ion-chevron-left"></i> Start over
         </button>
     </ion-nav-buttons>
-    <ion-content class="has-header">
-        <section class="padding">
-            <button class="button button-block button-positive" ng-hide="isParked" ng-click="parkMeAgain()">
-                Park Me again
-            </button>
-            <button class="button button-block button-calm" ng-click="takeMeToMyCar()" ng-show="isDeviceLocated">
-                Take me to my car
-            </button>
+
+    <ion-content class="has-header" scroll="false">
+        <section class="row buttons">
+            <div class="col">
+                <button class="button button-block button-positive" ng-hide="isParked" ng-click="parkMeAgain()">Park me again</button>
+                <button class="button button-block button-calm" ng-click="takeMeToMyCar()" ng-show="isDeviceLocated">Take me to my car</button>
+            </div>
         </section>
     </ion-content>
 </ion-view>
