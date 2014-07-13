@@ -16,6 +16,12 @@
   font-weight: normal;
   font-style: normal; }
 
+@font-face {
+  font-family: 'brand-bold';
+  src: url('../fonts/OpenSans-Bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal; }
+
 /*!
   Ionicons, v1.5.2
   Created by Ben Sperry for the Ionic Framework, http://ionicons.com/
@@ -7663,7 +7669,7 @@ a.button {
   transition: none !important; }
 
 * {
-  font-family: 'brand-regular', 'sans-serif' !important; }
+  font-family: 'brand-regular', Sans-Serif; }
 
 .pull-left {
   float: left !important; }
@@ -7695,6 +7701,21 @@ a.button {
   position: static;
   float: left;
   margin-right: 5px; }
+
+.bar-header {
+  background-color: #000;
+  padding: 5px 20px; }
+
+.bar-header .button {
+  color: #fff;
+  font-family: 'brand-bold', Sans-Serif;
+  font-size: 15px; }
+
+.bar-header .button .ion-chevron-left {
+  margin: 0 10px 0 0; }
+
+.bar-header .button:hover {
+  color: #fff; }
 
 #home {
   background-image: url(../img/street_background_1.jpg);
@@ -7729,7 +7750,7 @@ a.button {
 
 #home .branding p {
   color: #fff;
-  font-family: OpenSans, Sans-Serif;
+  font-family: 'brand-semibold', Sans-Serif;
   font-size: 18px;
   font-weight: 600;
   text-shadow: 0px -2px 1px rgba(0, 0, 0, 0.3); }
@@ -7757,7 +7778,7 @@ a.button {
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
   border-radius: 8px;
-  font-family: OpenSans, Sans-Serif;
+  font-family: 'brand-bold', Sans-Serif;
   font-size: 25px;
   font-weight: 700;
   height: 73px;
@@ -7768,10 +7789,6 @@ a.button {
   background-color: #008040; }
 
 #home .options {
-  /*bottom: 20px;
-		left: 0;
-		position: absolute;
-		width: 100%;*/
   bottom: 20px;
   position: fixed;
   text-align: left; }
@@ -7827,5 +7844,106 @@ a.button {
 #locations ion-item p {
   margin-bottom: 0; }
 
-#detail .card-sign-post {
-  padding: 20px; }
+#detail {
+  background-image: url(../img/street_background_1.jpg);
+  background-position: center center;
+  background-size: 100% 100%; }
+
+#detail .scroll-content {
+  height: 100%;
+  padding: 0 20px; }
+
+#detail .scroll {
+  float: left;
+  height: 100%;
+  width: 100%; }
+
+#detail .sign-post {
+  background-image: url(../img/sign_post.svg);
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  height: 100%;
+  padding: 0 25px; }
+
+#detail .sign-post .content {
+  position: relative;
+  text-align: center;
+  top: 70px;
+  width: 100%; }
+
+#detail .sign-post h1 {
+  font-family: 'brand-semibold', Sans-Serif;
+  font-size: 26px;
+  font-weight: 600;
+  margin: 0 0 25px;
+  text-transform: uppercase; }
+
+#detail .sign-post h2 {
+  color: #00b259;
+  font-family: 'brand-semibold', Sans-Serif;
+  font-size: 92px;
+  font-weight: 600;
+  text-transform: uppercase; }
+
+#detail .sign-post h3 {
+  font-family: 'brand-light', Sans-Serif;
+  font-size: 30px;
+  font-weight: 300;
+  margin: 0 0 50px;
+  text-transform: uppercase; }
+
+#detail .sign-post .parking-times li {
+  display: inline-block;
+  list-style: none; }
+
+#detail .sign-post h4.time .from, #detail .sign-post h4.time .to {
+  display: inline-block;
+  height: 32px;
+  line-height: 32px;
+  position: relative; }
+
+#detail .sign-post h4.time .from .hours, #detail .sign-post h4.time .to .hours {
+  font-family: 'brand-semibold', Sans-Serif;
+  font-size: 36px;
+  font-weight: 600; }
+
+#detail .sign-post h4.time .from .minutes, #detail .sign-post h4.time .to .minutes {
+  font-family: 'brand-semibold', Sans-Serif;
+  font-size: 15px;
+  font-weight: 600;
+  height: 15px;
+  line-height: 15px;
+  position: absolute;
+  right: 0;
+  top: 0; }
+
+#detail .sign-post h4.time .from .suffix, #detail .sign-post h4.time .to .suffix {
+  font-family: 'brand-light', Sans-Serif;
+  font-size: 15px;
+  font-weight: 300;
+  height: 15px;
+  line-height: 15px;
+  text-transform: uppercase; }
+
+#detail .sign-post h4.day {
+  font-family: 'brand-semibold', Sans-Serif;
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: uppercase; }
+
+#detail .sign-post button {
+  background-color: #00b259;
+  border: none;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  font-family: 'brand-bold', Sans-Serif;
+  font-size: 22px;
+  font-weight: 700;
+  height: 66px;
+  line-height: 66px;
+  text-shadow: 0px -2px 1px rgba(0, 0, 0, 0.3); }
+
+#detail .sign-post button:hover {
+  background-color: #008040; }
