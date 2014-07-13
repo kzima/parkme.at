@@ -23,7 +23,6 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 @import "www/lib/ionic/scss/ionic";
 
 // GLOBALS
-
 .pull-left {
  	float: left !important;
 }
@@ -60,12 +59,156 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 // PAGES
 #home {
-	.ion-android-location {
-		color: $brand-green;
+	background-image: url(../img/street_background_1.jpg);
+	background-position: center center;
+	background-size: 100% 100%;
+	text-align: center;
+
+	.scroll-content {
+		height: 100%;
+		padding: 0 20px;
 	}
-	.item-floating-label {
-		border: 0;
-		overflow: none;
+
+	.scroll {
+		float: left;
+		height: 100%;
+		width: 100%;
+	}
+
+	.branding {
+		margin: 16% auto 0;
+		text-align: center;
+
+		.logo {
+			background-image: url(../img/park_me_logo_white_green.svg);
+			background-position: center center;
+			background-repeat: no-repeat;
+			background-size: 100% 100%;
+			display: inline-block;
+			height: 79px;
+			margin: 0 0 30px 22px;
+			max-width: 100%;
+			text-indent: -9999px;
+			width: 263px;
+		}
+
+		p {
+			color: #fff;
+			font-family: OpenSans, Sans-Serif;
+			font-size: 18px;
+			font-weight: 600;
+			text-shadow: 0px -2px 1px rgba(0, 0, 0, 0.3);
+		}
+	}
+
+	.search {
+		margin: 14% 0 0;
+
+		.location {
+			margin: 0 0 10px;
+
+			label {
+				-webkit-border-radius: 8px;
+				-moz-border-radius: 8px;
+				border-radius: 8px;
+				height: 54px;
+				padding: 6px 15px 5px;
+
+				.icon {
+					color: $brand-green;
+					padding-right: 13px;
+				}
+			}
+		}
+
+		button {
+			background-color: $brand-green;
+			border: none;
+			-webkit-border-radius: 8px;
+			-moz-border-radius: 8px;
+			border-radius: 8px;
+			font-family: OpenSans, Sans-Serif;
+			font-size: 25px;
+			font-weight: 700;
+			height: 73px;
+			line-height: 73px;
+			text-shadow: 0px -2px 1px rgba(0, 0, 0, 0.3);
+
+			&:hover {
+				background-color: #008040;
+			}
+		}
+	}
+	
+	.options {
+		/*bottom: 20px;
+		left: 0;
+		position: absolute;
+		width: 100%;*/
+
+		bottom: 20px;
+		position: fixed;
+		text-align: left;
+
+		.vehicle-type {
+			.button {
+				background: transparent;
+				border: none;
+				-webkit-border-radius: 8px;
+				-moz-border-radius: 8px;
+				border-radius: 8px;
+				height: 47px;
+				padding: 0 13px;
+				text-indent: -9999px;
+				
+				&.active {
+					background-color: #222;
+				}
+
+				&.vehicle-car {
+					background-image: url(../img/icon_car_white.svg);
+					background-position: center center;
+					background-repeat: no-repeat;
+					width: 73px;
+
+					&:hover {
+						background-image: url(../img/icon_car_green_active.svg);
+					}
+
+					&.active {
+						background-image: url(../img/icon_car_green.svg);
+					}
+				}
+
+				&.vehicle-motorcycle {
+					background-image: url(../img/icon_motorcycle_white.svg);
+					background-position: center center;
+					background-repeat: no-repeat;
+					width: 56px;
+
+					&:hover {
+						background-image: url(../img/icon_motorcycle_green_active.svg);
+					}
+
+					&.active {
+						background-image: url(../img/icon_motorcycle_green.svg);
+					}
+				}
+			}
+		}
+
+		button {
+			background: transparent;
+			border: none;
+			color: #fff;
+			height: 47px;
+			opacity: 0.5;
+			width: 47px;
+
+			&:hover {
+				opacity: 1;
+			}
+		}
 	}
 }
 

@@ -7675,12 +7675,133 @@ a.button {
   float: left;
   margin-right: 5px; }
 
-#home .ion-android-location {
-  color: #00b259; }
+#home {
+  background-image: url(../img/street_background_1.jpg);
+  background-position: center center;
+  background-size: 100% 100%;
+  text-align: center; }
 
-#home .item-floating-label {
-  border: 0;
-  overflow: none; }
+#home .scroll-content {
+  height: 100%;
+  padding: 0 20px; }
+
+#home .scroll {
+  float: left;
+  height: 100%;
+  width: 100%; }
+
+#home .branding {
+  margin: 16% auto 0;
+  text-align: center; }
+
+#home .branding .logo {
+  background-image: url(../img/park_me_logo_white_green.svg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  display: inline-block;
+  height: 79px;
+  margin: 0 0 30px 22px;
+  max-width: 100%;
+  text-indent: -9999px;
+  width: 263px; }
+
+#home .branding p {
+  color: #fff;
+  font-family: OpenSans, Sans-Serif;
+  font-size: 18px;
+  font-weight: 600;
+  text-shadow: 0px -2px 1px rgba(0, 0, 0, 0.3); }
+
+#home .search {
+  margin: 14% 0 0; }
+
+#home .search .location {
+  margin: 0 0 10px; }
+
+#home .search .location label {
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  height: 54px;
+  padding: 6px 15px 5px; }
+
+#home .search .location label .icon {
+  color: #00b259;
+  padding-right: 13px; }
+
+#home .search button {
+  background-color: #00b259;
+  border: none;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  font-family: OpenSans, Sans-Serif;
+  font-size: 25px;
+  font-weight: 700;
+  height: 73px;
+  line-height: 73px;
+  text-shadow: 0px -2px 1px rgba(0, 0, 0, 0.3); }
+
+#home .search button:hover {
+  background-color: #008040; }
+
+#home .options {
+  /*bottom: 20px;
+		left: 0;
+		position: absolute;
+		width: 100%;*/
+  bottom: 20px;
+  position: fixed;
+  text-align: left; }
+
+#home .options .vehicle-type .button {
+  background: transparent;
+  border: none;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  height: 47px;
+  padding: 0 13px;
+  text-indent: -9999px; }
+
+#home .options .vehicle-type .button.active {
+  background-color: #222; }
+
+#home .options .vehicle-type .button.vehicle-car {
+  background-image: url(../img/icon_car_white.svg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  width: 73px; }
+
+#home .options .vehicle-type .button.vehicle-car:hover {
+  background-image: url(../img/icon_car_green_active.svg); }
+
+#home .options .vehicle-type .button.vehicle-car.active {
+  background-image: url(../img/icon_car_green.svg); }
+
+#home .options .vehicle-type .button.vehicle-motorcycle {
+  background-image: url(../img/icon_motorcycle_white.svg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  width: 56px; }
+
+#home .options .vehicle-type .button.vehicle-motorcycle:hover {
+  background-image: url(../img/icon_motorcycle_green_active.svg); }
+
+#home .options .vehicle-type .button.vehicle-motorcycle.active {
+  background-image: url(../img/icon_motorcycle_green.svg); }
+
+#home .options button {
+  background: transparent;
+  border: none;
+  color: #fff;
+  height: 47px;
+  opacity: 0.5;
+  width: 47px; }
+
+#home .options button:hover {
+  opacity: 1; }
 
 #locations ion-item p {
   margin-bottom: 0; }
