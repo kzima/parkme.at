@@ -188,6 +188,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 			}
 		}
 	}
+
 	
 	.options {
 		bottom: 20px;
@@ -210,32 +211,33 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 				}
 
 				&.vehicle-car {
-					background-image: url(../img/icon_car_white.svg);
+					background-image: url(../img/icon_car_green.svg);
 					background-position: center center;
 					background-repeat: no-repeat;
 					width: 73px;
 
 					&:hover {
-						background-image: url(../img/icon_car_green_active.svg);
+						background-image: url(../img/icon_car_white.svg);
 					}
 
 					&.active {
-						background-image: url(../img/icon_car_green.svg);
+						background-image: url(../img/icon_car_white.svg);
 					}
 				}
 
 				&.vehicle-motorcycle {
-					background-image: url(../img/icon_motorcycle_white.svg);
+					background-image: url(../img/icon_motorcycle_green.svg);
 					background-position: center center;
 					background-repeat: no-repeat;
 					width: 56px;
 
 					&:hover {
-						background-image: url(../img/icon_motorcycle_green_active.svg);
+						background-image: url(../img/icon_motorcycle_white.svg);
 					}
 
 					&.active {
-						background-image: url(../img/icon_motorcycle_green.svg);
+						background-image: url(../img/icon_motorcycle_white.svg);
+						
 					}
 				}
 			}
@@ -253,6 +255,12 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 				opacity: 1;
 			}
 		}
+	}
+
+	.bar-footer {
+		height: 100px;
+		background: transparent;
+		padding: 25px;
 	}
 }
 

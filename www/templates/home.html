@@ -20,15 +20,16 @@
             </div>
         </section>
 
-        <section class="row options">
+        <section class="bar bar-footer options">
             <div class="col col-75 vehicle-type">
                 <a class="button vehicle-car" ng-click="params.vechicleType = 'car'" ng-class="{active: params.vechicleType === 'car'}">Car</a>
                 <a class="button vehicle-motorcycle" ng-click="params.vechicleType = 'motorcycle'" ng-class="{active: params.vechicleType === 'motorcycle'}">Motorcycle</a>
             </div>
 
-            <div class="col col-25">
-                <button class="button icon ion-ios7-information-outline" ng-click="goTo('about')"></button>    
+            <div class="col col-25 text-right">
+                <!--<button class="button icon ion-ios7-information-outline" ng-click="goTo('about')"></button>--> 
             </div>
         </section>
+
     </ion-content>
 </ion-view>
