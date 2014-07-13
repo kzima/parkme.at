@@ -189,6 +189,11 @@ angular.module('parkme.controllers', [])
      */
     $scope.parkMeAgain = function(){
         if (moment() < parkedAt.add(epxpiryPeriod, 'm')) {
+            var params = {
+                vechicleType: session.get("vechicleType"), 
+                longitude: session.get("chosenLocation").longitude,
+                latitude: session.get("chosenLocation").latitude,
+            };
             // this means user didn't find cark park space ans is looking fo new one
             $http.post('api/locations/'+$stateParams.id+'/unparked', params);
         } 
@@ -200,8 +205,13 @@ angular.module('parkme.controllers', [])
      * take me to my car
      */
     $scope.takeMeToMyCar = function(){
-        navigation.go();
+        navigation.go(true); // true means reverse
     };
+
+    /**
+     * redirect user to the satnav :)
+     */
+    //navigation.go(false); // false means from current location to the selected parking
 
 })
 
