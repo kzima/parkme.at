@@ -14,10 +14,8 @@ angular.module('parkme')
       var autocomplete = new google.maps.places.Autocomplete(element[0], {});
       google.maps.event.addListener(autocomplete, 'place_changed', function() {
         var place = autocomplete.getPlace();
-        var location = {lat: place.geometry.location.lat(), lng: place.geometry.location.lng()};
+        var location = {latitude: place.geometry.location.lat(), longitude: place.geometry.location.lng()};
         settings.setCurrentLocation(location);
-        //scope.$emit('locationChange', addressLocation.address);
-        //scope.$broadcast('locationChange');
       });
     }
   };
