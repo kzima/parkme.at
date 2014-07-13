@@ -1,8 +1,11 @@
 <ion-view id="locations">
 
     <!-- loading state -->
-    <section class="loading" ng-show="busy">
-        Loading...
+    <section id="loading" ng-show="busy">
+        <div class="message">
+            <img src="/img/loading_2x.gif" alt="Loading..." />
+            <p>Finding the nearest parking spaces for you.</p>
+        </div>
     </section>
 
     <!-- loaded state / show locations-->

@@ -121,7 +121,7 @@ angular.module('parkme.controllers', [])
             // !!! to be implemented
         }).finally(function(){
              // disable busy state
-            //$scope.busy = false;
+            $scope.busy = false;
             $ionicNavBarDelegate.showBar(true);
         });
     }, 0);
