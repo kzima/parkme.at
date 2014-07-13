@@ -123,7 +123,7 @@ $app->post('/locations/:id/parked', function($id) use ($app) {
 
 	// Create new parked record
 	$parked = Parked::create([
-		'location_id' => $id,
+		'parking_location_id' => $id,
 		'vehicle_type' => $vehicleType,
 		'latitude' => $latitude,
 		'longitude' => $longitude,
@@ -145,7 +145,7 @@ $app->post('/locations/:id/unparked', function($id) use ($app) {
 
 	// Create new unparked record
 	$unparked = Unparked::create([
-		'location_id' => $id,
+		'parking_location_id' => $id,
 		'vehicle_type' => $vehicleType,
 		'latitude' => $latitude,
 		'longitude' => $longitude,
