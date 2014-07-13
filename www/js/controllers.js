@@ -112,7 +112,6 @@ angular.module('parkme.controllers', [])
      * query locations and redirect to listing page
      */
     $timeout(function(){
-
         locations.query(params).then(function() {
             $scope.parkingLocations = locations.getByDuration($scope.filter.duration);
         }, function(errors){
