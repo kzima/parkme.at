@@ -16,7 +16,7 @@ class ParkingTime extends Eloquent {
 	 *
 	 * @var array
 	 */
-	protected $appends = ['is_operational', 'is_peak', 'is_off_peak'];
+	protected $appends = ['is_operational', 'is_peak', 'is_off_peak', 'is_operational_today'];
 
 	/**
 	 * The attributes that aren't mass assignable.
@@ -130,6 +130,26 @@ class ParkingTime extends Eloquent {
 
 		// Check if today falls on a weekend and between off peak times
 		if (in_array($today, $weekend) && ($weekendStartTime <= $time && $time <= $weekendEndTime)) {
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
+	 * Check if parking time is operational today.
+	 *
+	 * @return bool
+	 */
+	public function getIsOperationalTodayAttribute()
+	{
+		// Get numerical representation for today, start day and end day
+		$today = date('N');
+		$startDay = date('N', strtotime("{$this->start_day} this week"));
+		$endDay = date('N', strtotime("{$this->end_day} this week"));
+
+		// Check if today falls between start and end days
+		if ($startDay <= $today && $today <= $endDay) {
 			return true;
 		}
 

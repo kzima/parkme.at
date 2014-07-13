@@ -10,7 +10,7 @@ angular.module('parkme')
 	    angular.extend(this, locationData);
 	    this.title = this.street;
         this.title += (this.suburb) ? ', ' + this.suburb : '';
-        this.distanceFrom = this.distance.value + ' ' + this.distanceUnit;
+        this.distanceFrom = this.distance.value + ' ' + this.distance.unit;
         this.descriptionDuration = this.maximumStay.value + ' ';
         this.descriptionDuration += (this.maximumStay.unit === 1) ? (this.maximumStay.unit) : (this.maximumStay.unit) + 's';
         this.price = (this.rate.operational || this.rate.value === 0) ? $filter('currency')(this.rate.value, this.rate.unit) + '/' + this.rate.period : 'free';
@@ -35,7 +35,7 @@ angular.module('parkme')
         query: function(params) {
             return $http.post('api/locations', params, {cache: true}).then(function(data) {
                 locations = [];
-                angular.forEach(data.data.locations, function(data, key) {
+                angular.forEach(data.data.parkingLocations, function(data, key) {
                     var location = new Location(data);
                     locations.push(location);
                 });
@@ -57,11 +57,10 @@ angular.module('parkme')
         getById: function(id) {
             var result = {};
             angular.forEach(locations, function(location, key){
-                if (location.id == id) {
+                if (location.id == parseInt(id)) {
                     result = location;
                 }
             });
-            debugger;
             return result;
         },
 

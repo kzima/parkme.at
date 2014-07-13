@@ -4,24 +4,35 @@
     	<!-- sign post -->
     	<section class="row">
 	        <div class="card card-sign-post text-center col-offset-10 col-80">
-			  <div class="item item-text-wrap">
-			  	{{parking | json}}
-			    <h1>{{location.maximumStay.value}}</h1>
-			    <p>METER</p>
-			    <h2>7<sub>AM</sub> - 10<sub>PM</sub></h2>
-			    <h3>MON-FRI</h3>
-			    <h2>7<sub>AM</sub> - 10<sub>PM</sub></h2>
-			    <h3>MON-FRI</h3>
-			    <h3></h3>
-			  </div>
-			</div>
-		</section>
+			  	<div class="item item-text-wrap">
+				  	<h1>{{parking.street}}</h1>
+				  	<h2>{{parking.maximumStay.value}}P</h2>
+				    <h3>{{parking.rate.value | currency:parking.rate.symbol}} / {{parking.rate.period}} Meter</h3>
 
-    	<!-- sign post -->
-        <section class="card text-center">
-		  <div class="item item-text-wrap">
-		  	<p>You are allowed to park here for <strong>4 hours</strong> at <strong>$5</strong> per hour. </p>
-		  </div>
+				    <ul>
+				    	<li ng-repeat="parkingTime in parking.parkingTimes | filter: {operationalToday: true}">
+				    		<h4 class="time">
+				    			<span class="from">
+					    			<span class="hours">{{parkingTime.startTime.hour}}</span>
+					    			<span class="minutes">{{parkingTime.startTime.minute}}</span>
+					    			<span class="suffix">{{parkingTime.startTime.suffix}}</span>
+					    		</span>
+					    		<span class="separator"> - </span>
+					    		<span class="to">
+					    			<span class="hours">{{parkingTime.endTime.hour}}</span>
+					    			<span class="minutes">{{parkingTime.endTime.minute}}</span>
+					    			<span class="suffix">{{parkingTime.endTime.suffix}}</span>
+					    		</span>
+				    		</h4>
+				    		<h4 class="day">
+				    			<span class="from">{{parkingTime.startDay}}</span>
+				    			<span class="separator"> - </span>
+				    			<span class="to">{{parkingTime.endDay}}</span>
+				    		</h4>
+				    	</li>
+				   	</ul>
+				</div>
+			</div>
 		</section>
 
     </ion-content>

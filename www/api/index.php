@@ -52,6 +52,10 @@ $app->post('/locations', function() use ($app) {
 			'id' => $parkingLocation->id,
 			'street' => $parkingLocation->street,
 			'suburb' => $parkingLocation->suburb,
+			'location' => [
+				'latitude' => $parkingLocation->latitude,
+				'longitude' => $parkingLocation->longitude,
+			],
 			'parkingBays' => $parkingLocation->vehicleBays($vehicleType),
 			'distance' => [
 				'value' => $parkingLocation->distance,
@@ -82,9 +86,22 @@ $app->post('/locations', function() use ($app) {
 			// Append parking time to partial response
 			$partialResponse['parkingTimes'][] = [
 				'id' => $parkingTime->id,
-				'days' => sprintf('%s - %s', $parkingTime->start_day, $parkingTime->end_day),
-				'times' => sprintf('%s - %s', date('g:iA', strtotime($parkingTime->start_time)), date('g:iA', strtotime($parkingTime->end_time))),
+				'startDay' => $parkingTime->start_day,
+				'endDay' => $parkingTime->end_day,
+				'startTime' => [
+					'full' => date('g:ia', strtotime($parkingTime->start_time)),
+					'hour' => date('g', strtotime($parkingTime->start_time)),
+					'minutes' => date('i', strtotime($parkingTime->start_time)),
+					'suffix' => date('a', strtotime($parkingTime->start_time)),
+				],
+				'endTime' => [
+					'full' => date('g:iA', strtotime($parkingTime->end_time)),
+					'hour' => date('g', strtotime($parkingTime->end_time)),
+					'minutes' => date('i', strtotime($parkingTime->end_time)),
+					'suffix' => date('a', strtotime($parkingTime->end_time)),
+				],
 				'operational' => $parkingTime->is_operational,
+				'operationalToday' => $parkingTime->is_operational_today,
 			];
 		}
 
