@@ -177,9 +177,17 @@ angular.module('parkme')
         }
     };
     return {
-        go: function() {
-            var origin = settings.get('currentLocation');
-            var destination = session.get('chosenLocation');
+        go: function(reverse) {
+
+            // reverse location for take me to the car
+            if (reverse) {
+                var origin = session.get('chosenLocation');
+                var destination = settings.get('currentLocation');
+            } else {
+                var origin = settings.get('currentLocation');
+                var destination = session.get('chosenLocation');
+            }
+            
             var directions = origin.latitude + ',' + origin.longitude + '/' + destination.latitude + ',' + destination.longitude + '?dirflg=w';
 
             // If it's an iPhone..

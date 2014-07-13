@@ -200,8 +200,20 @@ angular.module('parkme.controllers', [])
      * take me to my car
      */
     $scope.takeMeToMyCar = function(){
-        navigation.go();
+        navigation.go(true); // true means reverse
     };
+
+    /**
+     * new search redirect to a previous search results
+     */
+    $scope.newSearch = function(){
+        $scope.goTo('locations');
+    }
+
+    /**
+     * redirect user to the satnav :)
+     */
+    navigation.go(false); // false means from current location to the selected parking
 
 })
 
