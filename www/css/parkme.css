@@ -1,3 +1,21 @@
+@font-face {
+  font-family: 'brand-regular';
+  src: url('../fonts/OpenSans-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'brand-light';
+  src: url('../fonts/OpenSans-Light.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'brand-semibold';
+  src: url('../fonts/OpenSans-Semibold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal; }
+
 /*!
   Ionicons, v1.5.2
   Created by Ben Sperry for the Ionic Framework, http://ionicons.com/
@@ -7643,6 +7661,9 @@ a.button {
 .platform-c:not(.enable-transitions) * {
   -webkit-transition: none !important;
   transition: none !important; }
+
+* {
+  font-family: 'brand-regular', 'sans-serif' !important; }
 
 .pull-left {
   float: left !important; }

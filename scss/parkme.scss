@@ -1,3 +1,22 @@
+@font-face {
+	font-family: 'brand-regular';
+	src: url('../fonts/OpenSans-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'brand-light';
+	src: url('../fonts/OpenSans-Light.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'brand-semibold';
+	src: url('../fonts/OpenSans-Semibold.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
 $light:                           #fff !default;
 $stable:                          #f8f8f8 !default;
 $positive:                        #4a87ee !default;
@@ -22,8 +41,10 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
-// GLOBALS
-
+* {
+	font-family: 'brand-regular', 'sans-serif' !important;
+}
+// GLOBALS	
 .pull-left {
  	float: left !important;
 }
