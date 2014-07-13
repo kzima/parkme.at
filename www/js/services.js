@@ -168,7 +168,7 @@ angular.module('parkme')
     };
 })
 
-.service('navigation', function(session, settings) {
+.service('navigation', function(session, settings, Location) {
     var iOSversion = function() {
         if (/iP(hone|od|ad)/.test(navigator.platform)) {
             // supports iOS 2.0 and later: <http://bit.ly/TJjs1V>
@@ -178,14 +178,9 @@ angular.module('parkme')
     };
     return {
         go: function() {
-            var origin = settings.get('location');
+            var origin = settings.get('currentLocation');
             var destination = session.get('chosenLocation');
-            location = {
-                lng: 153.023449,
-                lat: -27.471011
-            };
-            
-            var directions = origin.lat + ',' + origin.lng + '/' + destination.lat + ',' + detination.lng + '?dirflg=w';
+            var directions = origin.latitude + ',' + origin.longitude + '/' + destination.latitude + ',' + destination.longitude + '?dirflg=w';
 
             // If it's an iPhone..
             if ((navigator.platform.indexOf("iPhone") !== -1) || (navigator.platform.indexOf("iPod") !== -1)) {

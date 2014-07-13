@@ -168,7 +168,7 @@ angular.module('parkme.controllers', [])
 })
 
 // complete Page
-.controller('CompleteCtrl', function($scope, $timeout, $stateParams, $http, session, settings) {
+.controller('CompleteCtrl', function($scope, $timeout, $stateParams, $http, session, settings, navigation) {
     // set the session timestamp on when the user has last time parked
     var parkedAt = moment(session.get('parkedAt'));
     var epxpiryPeriod = 60; //mins
