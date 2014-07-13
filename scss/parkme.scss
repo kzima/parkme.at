@@ -1,0 +1,549 @@
+@font-face {
+	font-family: 'brand-regular';
+	src: url('../fonts/OpenSans-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'brand-light';
+	src: url('../fonts/OpenSans-Light.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'brand-semibold';
+	src: url('../fonts/OpenSans-Semibold.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'brand-bold';
+	src: url('../fonts/OpenSans-Bold.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+$light:                           #fff !default;
+$stable:                          #f8f8f8 !default;
+$positive:                        #4a87ee !default;
+$calm:                            #43cee6 !default;
+$balanced:                        #66cc33 !default;
+$energized:                       #f0b840 !default;
+$assertive:                       #ef4e3a !default;
+$royal:                           #8a6de9 !default;
+$dark:                            #444 !default;
+$gray-light:					  lighten(#000, 60%);   // #999
+
+// brand colors
+$brand-green: #00b259;
+$brand-lighter-gray: #efefef;
+$brand-light-gray: #8a8585;
+$brand-dark-gray: #222222;
+
+
+// The path for our ionicons font files, relative to the built CSS in www/css
+$ionicons-font-path: "../lib/ionic/fonts" !default;
+
+// Include all of Ionic
+@import "www/lib/ionic/scss/ionic";
+
+// GLOBALS
+* {
+	font-family: 'brand-regular', 'sans-serif';
+}
+
+.pull-left {
+ 	float: left !important;
+}
+.pull-right {
+ 	float: right !important;
+}
+.text-center {
+	text-align: center;
+}
+.text-right {
+	text-align: right;
+}
+.text-left {
+	text-align: left;
+}
+.text-muted {
+	color: $gray-light;
+}
+
+// badges
+.item .badge {
+	right: 10px;
+}
+.badges {
+	position: absolute;
+	right: 10px;
+	top: 25px;
+	.badge {
+		position: static;
+		float: left;
+		margin-right: 5px;
+	}
+}
+
+// HEADER
+.bar-header {
+	background-color: #000;
+	padding: 5px 20px;
+
+	.button {
+		color: #fff;
+		font-family: 'brand-bold', Sans-Serif;
+		font-size: 15px;
+
+		.ion-chevron-left {
+			margin: 0 10px 0 0;
+		}
+
+		&:hover {
+			color: #fff;
+		}
+	}
+}
+
+// PAGES
+#home {
+	background-image: url(../img/street_background_1.jpg);
+	background-position: center center;
+	background-size: 100% 100%;
+	text-align: center;
+
+	.scroll-content {
+		height: 100%;
+		padding: 0 20px;
+	}
+
+	.scroll {
+		float: left;
+		height: 100%;
+		width: 100%;
+	}
+
+	.branding {
+		margin: 16% auto 0;
+		text-align: center;
+
+		.logo {
+			background-image: url(../img/park_me_logo_white_green.svg);
+			background-position: center center;
+			background-repeat: no-repeat;
+			background-size: 100% 100%;
+			display: inline-block;
+			height: 79px;
+			margin: 0 0 30px 22px;
+			max-width: 100%;
+			text-indent: -9999px;
+			width: 263px;
+		}
+
+		p {
+			color: #fff;
+			font-family: 'brand-semibold', Sans-Serif;
+			font-size: 18px;
+			font-weight: 600;
+			text-shadow: 0px -2px 1px rgba(0, 0, 0, 0.3);
+		}
+	}
+
+	.search {
+		margin: 14% 0 0;
+
+		.location {
+			margin: 0 0 10px;
+
+			label {
+				-webkit-border-radius: 8px;
+				-moz-border-radius: 8px;
+				border-radius: 8px;
+				height: 54px;
+				padding: 6px 15px 5px;
+
+				.icon {
+					color: $brand-green;
+					padding-right: 13px;
+				}
+			}
+		}
+
+		button {
+			background-color: $brand-green;
+			border: none;
+			-webkit-border-radius: 8px;
+			-moz-border-radius: 8px;
+			border-radius: 8px;
+			font-family: 'brand-bold', Sans-Serif;
+			font-size: 25px;
+			font-weight: 700;
+			height: 73px;
+			line-height: 73px;
+			text-shadow: 0px -2px 1px rgba(0, 0, 0, 0.3);
+
+			&:hover {
+				background-color: #008040;
+			}
+		}
+	}
+
+	
+	.options {
+		bottom: 20px;
+		position: fixed;
+		text-align: left;
+
+		.vehicle-type {
+			.button {
+				background: transparent;
+				border: none;
+				-webkit-border-radius: 8px;
+				-moz-border-radius: 8px;
+				border-radius: 8px;
+				height: 47px;
+				padding: 0 13px;
+				text-indent: -9999px;
+				
+				&.active {
+					background-color: #222;
+				}
+
+				&.vehicle-car {
+					background-image: url(../img/icon_car_green.svg);
+					background-position: center center;
+					background-repeat: no-repeat;
+					width: 73px;
+
+					&:hover {
+						background-image: url(../img/icon_car_white.svg);
+					}
+
+					&.active {
+						background-image: url(../img/icon_car_white.svg);
+					}
+				}
+
+				&.vehicle-motorcycle {
+					background-image: url(../img/icon_motorcycle_green.svg);
+					background-position: center center;
+					background-repeat: no-repeat;
+					width: 56px;
+
+					&:hover {
+						background-image: url(../img/icon_motorcycle_white.svg);
+					}
+
+					&.active {
+						background-image: url(../img/icon_motorcycle_white.svg);
+						
+					}
+				}
+			}
+		}
+
+		button {
+			background: transparent;
+			border: none;
+			color: #fff;
+			height: 47px;
+			opacity: 0.5;
+			width: 47px;
+
+			&:hover {
+				opacity: 1;
+			}
+		}
+	}
+
+	.bar-footer {
+		height: 100px;
+		background: transparent;
+		padding: 25px;
+	}
+}
+
+#locations {
+	ion-item {
+		p {
+			margin-bottom: 0;
+		}
+	}
+	.filters {
+		padding-top: 0;
+		padding-bottom: 0;
+		z-index: 10;
+		position: relative;
+		-webkit-box-shadow: 0px 0px 45px -7px #000000;
+		       -moz-box-shadow: 0px 0px 45px -7px #000000;
+		            box-shadow: 0px 0px 45px -7px #000000;
+	}
+	.item-divider {
+		border: none;
+		font-size: 14px;
+		font-family: 'brand-light';
+		background: $brand-lighter-gray;
+	}
+	.item-content {
+		font-weight: normal;
+	}
+	.badge {
+		background: $brand-lighter-gray;
+			-webkit-border-radius: 5px;
+	     	-moz-border-radius: 5px;
+	      	-ms-border-radius: 5px;
+	        border-radius: 5px;
+	    color: #000;
+	    font-size: 14px;
+	    &.free {
+	    	color: #fff;
+	    	background: $brand-green;
+	    }
+	}
+
+	.range input {
+		padding: 2px;
+	}
+
+	.button.button-small{
+		position: absolute;
+		right: 10px;
+		top: 5px;
+		padding: 5px 10px;
+		min-width: 100px;
+		border: 1px #dadada solid;
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+		-ms-border-radius: 5px;
+		border-radius: 5px;
+		background: #f6f8f9; /* Old browsers */
+		background: -moz-linear-gradient(top, #f6f8f9 0%, #e5ebee 50%, #e1e1e1 100%); /* FF3.6+ */
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f6f8f9), color-stop(50%,#e5ebee), color-stop(100%,#e1e1e1)); /* Chrome,Safari4+ */
+		background: -webkit-linear-gradient(top, #f6f8f9 0%,#e5ebee 50%,#e1e1e1 100%); /* Chrome10+,Safari5.1+ */
+		background: -o-linear-gradient(top, #f6f8f9 0%,#e5ebee 50%,#e1e1e1 100%); /* Opera 11.10+ */
+		background: -ms-linear-gradient(top, #f6f8f9 0%,#e5ebee 50%,#e1e1e1 100%); /* IE10+ */
+		background: linear-gradient(to bottom, #f6f8f9 0%,#e5ebee 50%,#e1e1e1 100%); /* W3C */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f6f8f9', endColorstr='#e1e1e1',GradientType=0 ); /* IE6-9 */
+	}
+
+	#loading {
+		background-color: $brand-green;
+		height: 100%;
+		text-align: center;
+
+		.message {
+			position: relative;
+			top: 40%;
+
+			img {
+				display: inline-block;
+				height: 44px;
+				width: 111px;
+			}
+
+			p {
+				color: #000;
+				font-family: 'brand-semibold', Sans-Serif;
+				font-size: 20px;
+				font-weight: 600;
+				line-height: 24px;
+			}
+		}
+	}
+}
+
+#detail {
+	background-image: url(../img/street_background_1.jpg);
+	background-position: center center;
+	background-size: 100% 100%;
+
+	.scroll-content {
+		height: 100%;
+		padding: 0 20px;
+	}
+
+	.scroll {
+		float: left;
+		height: 100%;
+		width: 100%;
+	}
+
+	.sign-post {
+		background-image: url(../img/sign_post.svg);
+		background-position: center top;
+		background-repeat: no-repeat;
+		background-size: 100% 100%;
+		height: 100%;
+		padding: 0 25px;
+
+		.content {
+			position: relative;
+			text-align: center;
+			top: 70px;
+			width: 100%;
+		}
+
+		h1 {
+			font-family: 'brand-semibold', Sans-Serif;
+			font-size: 25px;
+			font-weight: 600;
+			line-height: 25px;
+			margin: 0 0 25px;
+			text-transform: uppercase;
+		}
+
+		h2 {
+			color: $brand-green;
+			font-family: 'brand-semibold', Sans-Serif;
+			font-size: 92px;
+			font-weight: 600;
+			line-height: 92px;
+			text-transform: uppercase;
+		}
+
+		h3 {
+			font-family: 'brand-light', Sans-Serif;
+			font-size: 30px;
+			font-weight: 300;
+			line-height: 30px;
+			margin: 0 0 30px;
+			text-transform: uppercase;
+		}
+
+		.parking-times {
+			margin: 0 0 30px;
+
+			li {
+				display: inline-block;
+				list-style: none;
+				margin: 0 10px;
+			}
+		}
+
+		h4.time {
+			.from, .to {
+				display: inline-block;
+				height: 32px;
+				line-height: 32px;
+				position: relative;
+
+				.hours {
+					font-family: 'brand-light', Sans-Serif;
+					font-size: 36px;
+					font-weight: 600;
+				}
+
+				.minutes {
+					font-family: 'brand-semibold', Sans-Serif;
+					font-size: 15px;
+					font-weight: 600; 
+					height: 15px;
+					line-height: 15px;
+					position: absolute;
+					right: 0;
+					top: 0;
+				}
+
+				.suffix {
+					font-family: 'brand-light', Sans-Serif;
+					font-size: 15px;
+					font-weight: 300;
+					height: 15px;
+					line-height: 15px;
+					text-transform: uppercase;
+				}
+			}
+		}
+
+		h4.day {
+			font-family: 'brand-semibold', Sans-Serif;
+			font-size: 18px;
+			font-weight: 600;
+			text-transform: uppercase;
+		}
+
+
+		button {
+			background-color: $brand-green;
+			border: none;
+			-webkit-border-radius: 8px;
+			-moz-border-radius: 8px;
+			border-radius: 8px;
+			font-family: 'brand-bold', Sans-Serif;
+			font-size: 22px;
+			font-weight: 700;
+			height: 66px;
+			line-height: 66px;
+			text-shadow: 0px -2px 1px rgba(0, 0, 0, 0.3);
+
+			&:hover {
+				background-color: #008040;
+			}
+		}		
+	}
+}
+
+#complete {
+	background-image: url(../img/street_background_1.jpg);
+	background-position: center center;
+	background-size: 100% 100%;
+	text-align: center;
+
+	.scroll-content {
+		height: 100%;
+		padding: 0 20px;
+	}
+
+	.scroll {
+		float: left;
+		height: 100%;
+		width: 100%;
+	}
+
+	.buttons {
+		margin: -86px 0 0;
+		position: relative;
+		top: 40%;
+	}
+
+	.button-positive {
+		background-color: $brand-green;
+		border: none;
+		-webkit-border-radius: 8px;
+		-moz-border-radius: 8px;
+		border-radius: 8px;
+		font-family: 'brand-bold', Sans-Serif;
+		font-size: 22px;
+		font-weight: 700;
+		height: 66px;
+		line-height: 66px;
+		text-shadow: 0px -2px 1px rgba(0, 0, 0, 0.3);
+
+		&:hover {
+			background-color: #008040;
+		}
+	}
+
+	.button-calm {
+		background-color: #222;
+		border: none;
+		-webkit-border-radius: 8px;
+		-moz-border-radius: 8px;
+		border-radius: 8px;
+		font-family: 'brand-bold', Sans-Serif;
+		font-size: 22px;
+		font-weight: 700;
+		height: 66px;
+		line-height: 66px;
+		text-shadow: 0px -2px 1px rgba(0, 0, 0, 0.3);
+
+		&:hover {
+			background-color: #000;
+		}
+	}
+}
+
+div#thumb {
+	background: $brand-green !important;
+}	

@@ -1,0 +1,64 @@
+<ion-view id="locations">
+
+    <!-- loading state -->
+    <section id="loading" ng-show="busy">
+        <div class="row message">
+            <div class="col">
+                <img src="/img/loading_2x.gif" alt="Loading..." />
+                <p>Finding the nearest parking<br />spaces for you.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- loaded state / show locations-->
+    <section ng-hide="busy">
+        <!-- content -->
+        <ion-content class="has-header">
+
+            <!-- Filter Results -->
+            <section class="padding row filters">
+                <div class="range col-50">
+                    1H
+                    <input type="range" name="duration" step="1" min="1" max="12" ng-model="filter.duration">
+                    12H
+                </div>
+                <div class="col-offset-10 col-40">
+                    <a class="button button-small" ng-show="filter.sort == 'nearest'" ng-click="filter.sort = 'cheapest'"><i class="ion-android-sort"></i> Nearest</a>
+                    <a class="button button-small" ng-hide="filter.sort == 'nearest'" ng-click="filter.sort = 'nearest'"><i class="ion-android-sort"></i> Cheapest</a>
+                </div>
+            </section>
+
+            <!-- Parking locations by distance-->
+            <aricle ng-repeat="distance in breakdown.distance" ng-show="filter.sort == 'nearest'">
+                <div class="item item-divider" ng-show="(parkingLocations | filter:filterByDistance(distance)).length > 0">
+                    < {{distance.max | number:0 }}{{filter.distance}}
+                </div>
+                <ion-list>
+                    <!--<ion-item ng-repeat="parking in parkingLocations | filter:filterByDistance(distance)">-->
+                    <ion-item ng-repeat="parking in parkingLocations | filter:filterByDistance(distance)" href="#/locations/{{parking.id}}">
+                        <h2>{{parking.title}}</h2>
+                        <p>{{parking.descriptionDuration}}</p>
+                        <span class="badge badge-assertive">{{parking.distanceFrom}}</span>
+                    </ion-item>
+                </ion-list>
+            </aricle>
+
+            <!-- Parking locations by price-->
+            <aricle ng-repeat="price in breakdown.price" ng-hide="filter.sort == 'nearest'">
+                <div class="item item-divider" ng-show="(parkingLocations | filter:filterByPrice(price)).length > 0">
+                    < {{price.max | currency:filter.symbol}}
+                </div>
+                <ion-list>
+                    <!--<ion-item ng-repeat="parking in parkingLocations | filter:filterByPrice(price)">-->
+                    <ion-item ng-repeat="parking in parkingLocations | filter:filterByPrice(price)" href="">
+                        <h2>{{parking.title}}</h2>
+                        <p>{{parking.descriptionPrice}}</p>
+                        <span class="badge badge-assertive" ng-class="{'free': parking.price == 'free'}">{{parking.price}}</span>
+                    </ion-item>
+                </ion-list>
+            </aricle>
+
+        </ion-content>
+    </section>
+
+</ion-view>

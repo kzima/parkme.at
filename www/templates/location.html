@@ -1,0 +1,64 @@
+<ion-view id="detail" hide-back-button="true">
+    <ion-content class="has-header" scroll="false">
+    	<ion-nav-buttons side="left">
+	        <button class="button button-clear" ng-click="goTo('locations')">
+	            <i class="ion-chevron-left"></i> All car spaces
+	        </button>
+	    </ion-nav-buttons>
+
+	    <section class="row sign-post">
+	    	<div class="content">
+	    		<h1>{{parking.street}}</h1>
+	    		<h2>{{parking.maximumStay.value}}P</h2>
+	    		<h3>{{parking.rate.value | currency:parking.rate.symbol}} / {{parking.rate.period}} Meter</h3>
+
+	    		<ul class="parking-times">
+			    	<li ng-repeat="parkingTime in parking.parkingTimes | filter: {operationalToday: true}">
+			    		<h4 class="time">
+			    			<span class="from">
+				    			<span class="hours">{{parkingTime.startTime.hours}}</span>
+				    			<span class="minutes" ng-show="parkingTime.startTime.minutes > 0">{{parkingTime.startTime.minutes}}</span>
+				    			<span class="suffix">{{parkingTime.startTime.suffix}}</span>
+				    		</span>
+				    		<span class="separator"> - </span>
+				    		<span class="to">
+				    			<span class="hours">{{parkingTime.endTime.hours}}</span>
+				    			<span class="minutes" ng-show="parkingTime.endTime.minutes > 0">{{parkingTime.endTime.minutes}}</span>
+				    			<span class="suffix">{{parkingTime.endTime.suffix}}</span>
+				    		</span>
+			    		</h4>
+			    		<h4 class="day">
+			    			<span class="from">{{parkingTime.startDay}}</span>
+			    			<span class="separator"> - </span>
+			    			<span class="to">{{parkingTime.endDay}}</span>
+			    		</h4>
+			    	</li>
+			   	</ul>
+
+			   	<button class="button button-block button-positive" ng-click="selectParking()">Park me here!</button>
+	    	</div>
+	   	</section>
+
+
+
+    	<!--
+    	<section class="row">
+	        <div class="card card-sign-post text-center col-offset-10 col-80">
+			  	<div class="item item-text-wrap">
+				  	
+
+				    
+				</div>
+			</div>
+		</section>
+		-->
+
+    </ion-content>
+
+    <!--
+    <div class="bar bar-footer bar-balanced">
+      <div class="title" ng-click="selectParking()">Park Me Here</div>
+    </div>
+    -->
+
+</ion-view>

@@ -1,0 +1,35 @@
+<ion-view id="home">
+    <ion-content scroll="false">
+        <section class="row branding">
+            <div class="col">
+                <h1 class="logo">Park me</h1>
+                <p>A smarter, cheaper, safer way to park in Brisbane, AU.</p>
+            </div>
+        </section>
+
+        <section class="row search">
+            <div class="col">
+                <div class="list location">
+                    <label class="item item-input">
+                        <i class="icon ion-android-location placeholder-icon"></i>
+                        <google-places placeholder="{{placeholder}}"></google-places>
+                    </label>
+                </div>
+
+                <button class="button button-block button-positive" ng-click="nextActionFn()">Find parking spaces</button>
+            </div>
+        </section>
+
+        <section class="bar bar-footer options">
+            <div class="col col-75 vehicle-type">
+                <a class="button vehicle-car" ng-click="params.vechicleType = 'car'" ng-class="{active: params.vechicleType === 'car'}">Car</a>
+                <a class="button vehicle-motorcycle" ng-click="params.vechicleType = 'motorcycle'" ng-class="{active: params.vechicleType === 'motorcycle'}">Motorcycle</a>
+            </div>
+
+            <div class="col col-25 text-right">
+                <!--<button class="button icon ion-ios7-information-outline" ng-click="goTo('about')"></button>--> 
+            </div>
+        </section>
+
+    </ion-content>
+</ion-view>
