@@ -11,6 +11,8 @@ angular.module('parkme.controllers', [])
         $state.go(state, params, { reload: true });
     };
 
+    settings.init();
+
 })
 
 // home page/landing page
@@ -135,7 +137,7 @@ angular.module('parkme.controllers', [])
 })
 
 // detail Page
-.controller('LocationCtrl', function($scope, $stateParams, $timeout, $http, locations, session) {
+.controller('LocationCtrl', function($scope, $stateParams, $timeout, $http, locations, session, settings) {
     // get parking object
     $scope.parking = locations.getById($stateParams.id);
 
@@ -160,7 +162,7 @@ angular.module('parkme.controllers', [])
             latitude: chosenLocation.latitude,
         };
         session.set('chosenLocation', chosenLocation);
-        $http.post('api/locations/'+$stateParams.id+'/parked', params).then(function(){
+        $http.post(settings.getApiUrl() + 'locations/'+$stateParams.id+'/parked', params).then(function(){
             // redirect to complete page
             $scope.goTo('complete', {id: $stateParams.id});
         });
@@ -196,7 +198,7 @@ angular.module('parkme.controllers', [])
                 latitude: session.get("chosenLocation").latitude,
             };
             // this means user didn't find cark park space ans is looking fo new one
-            $http.post('api/locations/'+$stateParams.id+'/unparked', params);
+            $http.post(settings.getApiUrl() + 'locations/'+$stateParams.id+'/unparked', params);
         } 
         // this means that user parked the car
         $scope.goTo('locations'); 
