@@ -25,7 +25,7 @@ angular.module('parkme')
 * @param  {Object} $q
 * @return {Object}
 */
-.service('locations', function($q, $http, Location) {
+.service('locations', function($q, $http, Location, settings) {
     var locations = [];
     return {
         /**
@@ -33,7 +33,7 @@ angular.module('parkme')
          * @return {Object} Promise
          */ 
         query: function(params) {
-            return $http.post('api/locations', params, {cache: true}).then(function(data) {
+            return $http.post(settings.getApiUrl() + 'locations', params, {cache: true}).then(function(data) {
                 locations = [];
                 angular.forEach(data.data.parkingLocations, function(data, key) {
                     var location = new Location(data);
@@ -116,9 +116,25 @@ angular.module('parkme')
  * @param  {Object} $q
  * @return {Object}
  */
-.service('settings', function(session, $q) {
+.service('settings', function(session, $q, $http) {
     var currentLocation = {};
+    var apiUrl = "";
     return {
+
+        /**
+         * settings init
+         * @return {[type]}
+         */
+        init: function(){
+            $http.get("settings.json", {cache: true}).success(function(data) {
+                console.info('build: ' + data.build);
+                if (data.live === "true") {
+                    apiUrl = data.liveDomain;
+                } else {
+                    apiUrl = data.testDomain;
+                }
+            });
+        },
 
         /**
          * set current location based on device location
@@ -156,6 +172,14 @@ angular.module('parkme')
          */
         get: function(){
             return currentLocation;
+        },
+
+        /**
+         * get api url
+         * @return {Object}
+         */
+        getApiUrl: function(){
+            return apiUrl;
         },
 
         /**

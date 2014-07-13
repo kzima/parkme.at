@@ -1,0 +1,6 @@
+{
+	"build": "v1.0",
+	"live": "false",
+	"testDomain": "api/",
+	"liveDomain": "http://parkme.at/api/"
+}
