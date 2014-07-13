@@ -214,7 +214,7 @@ angular.module('parkme.controllers', [])
     /**
      * redirect user to the satnav :)
      */
-    //navigation.go(false); // false means from current location to the selected parking
+    navigation.go(false); // false means from current location to the selected parking
 
 })
 
