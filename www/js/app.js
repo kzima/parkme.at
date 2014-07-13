@@ -48,7 +48,7 @@ angular.module('parkme', ['ionic', 'parkme.controllers'])
      * complete page (successful/unsuccessful)
      */
     .state('complete', {
-        url: "/complete",
+        url: "/complete/:id",
         templateUrl: "templates/complete.html",
         controller: 'CompleteCtrl'
     })

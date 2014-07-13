@@ -61,7 +61,6 @@ angular.module('parkme')
                     result = location;
                 }
             });
-            debugger;
             return result;
         },
 
@@ -179,13 +178,14 @@ angular.module('parkme')
     };
     return {
         go: function() {
-            var location = session.get('location');
+            var origin = session.get('location');
+            var destination = session.get('chosenLocation');
             location = {
                 lng: 153.023449,
                 lat: -27.471011
             };
-            var destination = Location.getPlace().location;
-            var directions = location.lat + ',' + destination.lng + '/' + destination.lat + ',' + location.lng + '?dirflg=w';
+            
+            var directions = origin.lat + ',' + origin.lng + '/' + destination.lat + ',' + detination.lng + '?dirflg=w';
 
             // If it's an iPhone..
             if ((navigator.platform.indexOf("iPhone") !== -1) || (navigator.platform.indexOf("iPod") !== -1)) {

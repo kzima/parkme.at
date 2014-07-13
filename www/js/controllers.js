@@ -72,7 +72,7 @@ angular.module('parkme.controllers', [])
 
     // distance/price breakdown (this could by dynamic in the future)
     $scope.breakdown = {
-        distance: [{min: 0, max:100}, {min: 100, max:250}, {min: 250, max:500}, {min: 500, max:1000}],
+        distance: [{min: 0, max:100}, {min: 100, max:250}, {min: 250, max:500}, {min: 500, max:1000}, {min: 1000, max:2000}],
         price: [{min: 0, max:1}, {min: 1, max:2}, {min: 2, max:3}, {min: 3, max:5}]
     };
 
@@ -136,12 +136,70 @@ angular.module('parkme.controllers', [])
 })
 
 // detail Page
-.controller('LocationCtrl', function($scope, $stateParams, locations) {
+.controller('LocationCtrl', function($scope, $stateParams, $timeout, locations, session) {
+    // get parking object
     $scope.parking = locations.getById($stateParams.id);
+    // clear chosen Location
+    session.set('chosenLocation', {});
+
+    /**
+     * select Pariking
+     * set ne timestamp and chosen location
+     * send request ot server to save user selection
+     */
+    $scope.selectParking = function(){
+        // set parkedAt timestamp
+        session.set('parkedAt', moment());
+        var chosenLocation = {
+            longitude: $scope.parking.location.longitude,
+            latitude: $scope.parking.location.latitude
+        };
+        session.set('chosenLocation', chosenLocation);
+        $http.post('api/locations/'+$stateParams.id+'/parked', params).then(function(){
+            // redirect to complete page
+            $scope.goTo('complete', {id: $stateParams.id});
+        });
+        
+    }
 })
 
 // complete Page
-.controller('CompleteCtrl', function($scope) {})
+.controller('CompleteCtrl', function($scope, $timeout, $stateParams, session, settings) {
+    // set the session timestamp on when the user has last time parked
+    var parkedAt = moment(session.get('parkedAt'));
+    var epxpiryPeriod = 60; //mins
+    $scope.isDeviceLocated = false; // hide tame to my car btn initialy
+
+    // check if we can locate the device
+    settings.setCurrentLocation().then(function(){
+        if (settings.isDeviceLocated()) {
+            $scope.isDeviceLocated = true;
+        }
+    });
+    
+    /**
+     * on "Park me again" check the time and either call service unparked or redirect to 
+     * locations list page 
+     * moment() is now
+     * parkedAt is time when selected the car park
+     */
+    $scope.parkMeAgain = function(){
+        if (moment() < parkedAt.add(epxpiryPeriod, 'm')) {
+            // this means user didn't find cark park space ans is looking fo new one
+            $http.post('api/locations/'+$stateParams.id+'/unparked', params);
+        } 
+        // this means that user parked the car
+        $scope.goTo('locations'); 
+    };
+
+    /**
+     * take me to my car
+     */
+    $scope.takeMeToMyCar = function(){
+        navigation.go();
+    };
+
+})
 
 // about
 .controller('AboutCtrl', function($scope) {})

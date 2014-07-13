@@ -1,13 +1,17 @@
-<ion-view title="">
+<ion-view title="" hide-back-button="true">
+    <ion-nav-buttons side="left">
+        <button class="button button-clear" ng-click="goTo('home')">
+            <i class="ion-chevron-left"></i> Find antoher park
+        </button>
+    </ion-nav-buttons>
     <ion-content class="has-header">
-    	<section class="padding">
-	        <button class="button button-block button-positive">
-	          No space, Park Me again
-	        </button>
-
-	        <button class="button button-block button-calm">
-	          Take me to my car
-	        </button>
-	    </section>
+        <section class="padding">
+            <button class="button button-block button-positive" ng-hide="isParked" ng-click="newSearch()">
+                Park Me again
+            </button>
+            <button class="button button-block button-calm" ng-click="takeMeToMyCar()" ng-show="isDeviceLocated">
+                Take me to my car
+            </button>
+        </section>
     </ion-content>
 </ion-view>
