@@ -97,6 +97,8 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 		}
 	}
 	.filters {
+		padding-top: 0;
+		padding-bottom: 0;
 		z-index: 10;
 		position: relative;
 		-webkit-box-shadow: 0px 0px 45px -7px #000000;
@@ -114,13 +116,43 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 	}
 	.badge {
 		background: $brand-lighter-gray;
-		-webkit-border-radius: 0;
-	     -moz-border-radius: 0;
-	      -ms-border-radius: 0;
-	          border-radius: 0;
+			-webkit-border-radius: 5px;
+	     	-moz-border-radius: 5px;
+	      	-ms-border-radius: 5px;
+	        border-radius: 5px;
 	    color: #000;
 	    font-size: 14px;
+	    &.free {
+	    	color: #fff;
+	    	background: $brand-green;
+	    }
 	}
+
+	.range input {
+		padding: 2px;
+	}
+
+	.button.button-small{
+		position: absolute;
+		right: 10px;
+		top: 5px;
+		padding: 5px 10px;
+		min-width: 100px;
+		border: 1px #dadada solid;
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+		-ms-border-radius: 5px;
+		border-radius: 5px;
+		background: #f6f8f9; /* Old browsers */
+		background: -moz-linear-gradient(top, #f6f8f9 0%, #e5ebee 50%, #e1e1e1 100%); /* FF3.6+ */
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f6f8f9), color-stop(50%,#e5ebee), color-stop(100%,#e1e1e1)); /* Chrome,Safari4+ */
+		background: -webkit-linear-gradient(top, #f6f8f9 0%,#e5ebee 50%,#e1e1e1 100%); /* Chrome10+,Safari5.1+ */
+		background: -o-linear-gradient(top, #f6f8f9 0%,#e5ebee 50%,#e1e1e1 100%); /* Opera 11.10+ */
+		background: -ms-linear-gradient(top, #f6f8f9 0%,#e5ebee 50%,#e1e1e1 100%); /* IE10+ */
+		background: linear-gradient(to bottom, #f6f8f9 0%,#e5ebee 50%,#e1e1e1 100%); /* W3C */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f6f8f9', endColorstr='#e1e1e1',GradientType=0 ); /* IE6-9 */
+	}
+
 }
 
 #detail {

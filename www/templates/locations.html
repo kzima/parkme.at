@@ -1,4 +1,4 @@
-<ion-view title="Parkings" id="locations">
+<ion-view id="locations">
 
     <!-- loading state -->
     <section ng-show="busy">
@@ -18,9 +18,9 @@
                     <input type="range" name="duration" step="1" min="1" max="12" ng-model="filter.duration">
                     12H
                 </div>
-                <div class="button-bar col-offset-10 col-40">
-                    <a class="button" ng-show="filter.sort == 'nearest'" ng-click="filter.sort = 'cheapest'"><i class="ion-android-sort"></i> Nearest</a>
-                    <a class="button" ng-hide="filter.sort == 'nearest'" ng-click="filter.sort = 'nearest'"><i class="ion-android-sort"></i> Cheapest</a>
+                <div class="col-offset-10 col-40">
+                    <a class="button button-small" ng-show="filter.sort == 'nearest'" ng-click="filter.sort = 'cheapest'"><i class="ion-android-sort"></i> Nearest</a>
+                    <a class="button button-small" ng-hide="filter.sort == 'nearest'" ng-click="filter.sort = 'nearest'"><i class="ion-android-sort"></i> Cheapest</a>
                 </div>
             </section>
 
@@ -31,7 +31,7 @@
                 </div>
                 <ion-list>
                     <!--<ion-item ng-repeat="parking in parkingLocations | filter:filterByDistance(distance)">-->
-                    <ion-item ng-repeat="parking in parkingLocations | filter:filterByDistance(distance)" href="">
+                    <ion-item ng-repeat="parking in parkingLocations | filter:filterByDistance(distance)" href="#/locations/{{parking.id}}">
                         <h2>{{parking.title}}</h2>
                         <p>{{parking.descriptionDuration}}</p>
                         <span class="badge badge-assertive">{{parking.distanceFrom}}</span>
@@ -46,10 +46,10 @@
                 </div>
                 <ion-list>
                     <!--<ion-item ng-repeat="parking in parkingLocations | filter:filterByPrice(price)">-->
-                    <ion-item ng-repeat="parking in parkingLocations | filter:filterByPrice(price)" href="#/locations/{{parking.id}}">
+                    <ion-item ng-repeat="parking in parkingLocations | filter:filterByPrice(price)" href="">
                         <h2>{{parking.title}}</h2>
                         <p>{{parking.descriptionPrice}}</p>
-                        <span class="badge badge-assertive">{{parking.price}}</span>
+                        <span class="badge badge-assertive" ng-class="{'free': parking.price == 'free'}">{{parking.price}}</span>
                     </ion-item>
                 </ion-list>
             </aricle>
