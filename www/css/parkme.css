@@ -7911,6 +7911,27 @@ a.button {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f6f8f9', endColorstr='#e1e1e1',GradientType=0 );
   /* IE6-9 */ }
 
+#locations #loading {
+  background-color: #00b259;
+  height: 100%;
+  text-align: center; }
+
+#locations #loading .message {
+  position: relative;
+  top: 40%; }
+
+#locations #loading .message img {
+  display: inline-block;
+  height: 44px;
+  width: 111px; }
+
+#locations #loading .message p {
+  color: #000;
+  font-family: 'brand-semibold', Sans-Serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px; }
+
 #detail {
   background-image: url(../img/street_background_1.jpg);
   background-position: center center;
@@ -7941,8 +7962,9 @@ a.button {
 
 #detail .sign-post h1 {
   font-family: 'brand-semibold', Sans-Serif;
-  font-size: 26px;
+  font-size: 25px;
   font-weight: 600;
+  line-height: 25px;
   margin: 0 0 25px;
   text-transform: uppercase; }
 
@@ -7951,18 +7973,24 @@ a.button {
   font-family: 'brand-semibold', Sans-Serif;
   font-size: 92px;
   font-weight: 600;
+  line-height: 92px;
   text-transform: uppercase; }
 
 #detail .sign-post h3 {
   font-family: 'brand-light', Sans-Serif;
   font-size: 30px;
   font-weight: 300;
-  margin: 0 0 50px;
+  line-height: 30px;
+  margin: 0 0 30px;
   text-transform: uppercase; }
+
+#detail .sign-post .parking-times {
+  margin: 0 0 30px; }
 
 #detail .sign-post .parking-times li {
   display: inline-block;
-  list-style: none; }
+  list-style: none;
+  margin: 0 10px; }
 
 #detail .sign-post h4.time .from, #detail .sign-post h4.time .to {
   display: inline-block;
@@ -7971,7 +7999,7 @@ a.button {
   position: relative; }
 
 #detail .sign-post h4.time .from .hours, #detail .sign-post h4.time .to .hours {
-  font-family: 'brand-semibold', Sans-Serif;
+  font-family: 'brand-light', Sans-Serif;
   font-size: 36px;
   font-weight: 600; }
 
@@ -8014,6 +8042,58 @@ a.button {
 
 #detail .sign-post button:hover {
   background-color: #008040; }
+
+#complete {
+  background-image: url(../img/street_background_1.jpg);
+  background-position: center center;
+  background-size: 100% 100%;
+  text-align: center; }
+
+#complete .scroll-content {
+  height: 100%;
+  padding: 0 20px; }
+
+#complete .scroll {
+  float: left;
+  height: 100%;
+  width: 100%; }
+
+#complete .buttons {
+  margin: -86px 0 0;
+  position: relative;
+  top: 40%; }
+
+#complete .button-positive {
+  background-color: #00b259;
+  border: none;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  font-family: 'brand-bold', Sans-Serif;
+  font-size: 22px;
+  font-weight: 700;
+  height: 66px;
+  line-height: 66px;
+  text-shadow: 0px -2px 1px rgba(0, 0, 0, 0.3); }
+
+#complete .button-positive:hover {
+  background-color: #008040; }
+
+#complete .button-calm {
+  background-color: #222;
+  border: none;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  font-family: 'brand-bold', Sans-Serif;
+  font-size: 22px;
+  font-weight: 700;
+  height: 66px;
+  line-height: 66px;
+  text-shadow: 0px -2px 1px rgba(0, 0, 0, 0.3); }
+
+#complete .button-calm:hover {
+  background-color: #000; }
 
 div#thumb {
   background: #00b259 !important; }
