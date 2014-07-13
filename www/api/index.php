@@ -47,6 +47,9 @@ $app->post('/locations', function() use ($app) {
 
 	// Iterate through locations
 	foreach ($parkingLocations as $parkingLocation) {
+		// Calculate probability that all bays are full
+		$probabilityFull = ($parkingLocation->unparked && $parkingLocation->parked) ? round($parkingLocation->unparked / $parkingLocation->parked, 2) : 0;
+
 		// Prepare partial response
 		$partialResponse = [
 			'id' => $parkingLocation->id,
@@ -75,7 +78,7 @@ $app->post('/locations', function() use ($app) {
 			'parkingTimes' => [],
 			'status' => [
 				'lastReportedFull' => $parkingLocation->last_reported_full,
-				'probabilityFull' => round($parkingLocation->unparked / $parkingLocation->parked, 2),
+				'probabilityFull' => $probabilityFull,
 				'parked' => $parkingLocation->parked,
 				'unparked' => $parkingLocation->unparked,
 			],

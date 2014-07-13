@@ -12,7 +12,7 @@ angular.module('parkme')
         this.title += (this.suburb) ? ', ' + this.suburb : '';
         this.distanceFrom = this.distance.value + ' ' + this.distance.unit;
         this.descriptionDuration = this.maximumStay.value + ' ';
-        this.descriptionDuration += (this.maximumStay.unit === 1) ? (this.maximumStay.unit) : (this.maximumStay.unit) + 's';
+        this.descriptionDuration += (parseInt(this.maximumStay.unit) === 1) ? (this.maximumStay.unit) : (this.maximumStay.unit) + 's';
         this.price = (this.rate.operational || this.rate.value === 0) ? $filter('currency')(this.rate.value, this.rate.unit) + '/' + this.rate.period : 'free';
         this.descriptionPrice = $filter('currency')(this.rate.value, this.rate.unit);
     };
