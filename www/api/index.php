@@ -19,8 +19,21 @@ $app->post('/locations', function() use ($app) {
 
 	// Get nearest 20 parking locations
 	$parkingLocations = ParkingLocation::with('parkingTimes')
-		->select('parking_locations.*', Capsule::raw("ROUND(1000 * 6371 * ACOS(COS(RADIANS({$latitude})) * COS(RADIANS(latitude)) * COS(RADIANS(longitude) - RADIANS({$longitude})) + SIN(RADIANS({$latitude})) * SIN(RADIANS(latitude)))) AS distance"))
+		->select(
+			'parking_locations.*', 
+			Capsule::raw('COUNT(DISTINCT parked.id) AS parked'),
+			Capsule::raw('COUNT(DISTINCT unparked.id) AS unparked'),
+			Capsule::raw('MAX(unparked.created_at) AS last_reported_full'),
+			Capsule::raw("ROUND(1000 * 6371 * ACOS(COS(RADIANS({$latitude})) * COS(RADIANS(parking_locations.latitude)) * COS(RADIANS(parking_locations.longitude) - RADIANS({$longitude})) + SIN(RADIANS({$latitude})) * SIN(RADIANS(parking_locations.latitude)))) AS distance")
+		)
+		->leftJoin('parked', function($join) use ($vehicleType) {
+            $join->on('parking_locations.id', '=', 'parked.parking_location_id')->where('parked.vehicle_type', '=', $vehicleType);
+        })
+        ->leftJoin('unparked', function($join) use ($vehicleType) {
+            $join->on('parking_locations.id', '=', 'unparked.parking_location_id')->where('unparked.vehicle_type', '=', $vehicleType);
+        })
 		->where($baysField, '>', 0)
+		->groupBy('parking_locations.id')
 		->orderBy('distance')
 		->take(20)
 		->get();
@@ -57,8 +70,10 @@ $app->post('/locations', function() use ($app) {
 			],
 			'parkingTimes' => [],
 			'status' => [
-				'lastReportedFull' => false,
-				'probabilityFull' => 0.5,
+				'lastReportedFull' => $parkingLocation->last_reported_full,
+				'probabilityFull' => round($parkingLocation->unparked / $parkingLocation->parked, 2),
+				'parked' => $parkingLocation->parked,
+				'unparked' => $parkingLocation->unparked,
 			],
 		];
 
@@ -127,11 +142,3 @@ $app->post('/locations/:id/unparked', function($id) use ($app) {
 });
 
 $app->run();
-
-/*
-Status 500
-{
-	"success": true|false,
-	"message": "blah blah blah"
-}
-*/
