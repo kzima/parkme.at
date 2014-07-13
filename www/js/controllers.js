@@ -135,7 +135,7 @@ angular.module('parkme.controllers', [])
 })
 
 // detail Page
-.controller('LocationCtrl', function($scope, $stateParams, $timeout, locations, session) {
+.controller('LocationCtrl', function($scope, $stateParams, $timeout, $http, locations, session) {
     // get parking object
     $scope.parking = locations.getById($stateParams.id);
     // clear chosen Location
@@ -153,6 +153,11 @@ angular.module('parkme.controllers', [])
             longitude: $scope.parking.location.longitude,
             latitude: $scope.parking.location.latitude
         };
+        var params = {
+            vechicleType: session.get("car"), 
+            longitude: chosenLocation.longitude,
+            latitude: chosenLocation.latitude,
+        };
         session.set('chosenLocation', chosenLocation);
         $http.post('api/locations/'+$stateParams.id+'/parked', params).then(function(){
             // redirect to complete page
@@ -163,7 +168,7 @@ angular.module('parkme.controllers', [])
 })
 
 // complete Page
-.controller('CompleteCtrl', function($scope, $timeout, $stateParams, session, settings) {
+.controller('CompleteCtrl', function($scope, $timeout, $stateParams, $http, session, settings) {
     // set the session timestamp on when the user has last time parked
     var parkedAt = moment(session.get('parkedAt'));
     var epxpiryPeriod = 60; //mins
