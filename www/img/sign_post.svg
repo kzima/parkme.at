@@ -1,0 +1,35 @@
+<?xml version="1.0" standalone="no"?>
+<!-- Generator: Adobe Fireworks 10, Export SVG Extension by Aaron Beall (http://fireworks.abeall.com) . Version: 0.6.1  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg id="Untitled-Page%201" viewBox="0 0 317 564" style="background-color:#ffffff00" version="1.1"
+	xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve"
+	x="0px" y="0px" width="317px" height="564px"
+>
+	<defs>
+		<linearGradient id="gradient1" x1="6.0606%" y1="31.1111%" x2="84.8485%" y2="31.1111%">
+			<stop stop-color="#374b5e" stop-opacity="1" offset="0%"/>
+			<stop stop-color="#657078" stop-opacity="1" offset="43.3333%"/>
+			<stop stop-color="#545868" stop-opacity="1" offset="100%"/>
+		</linearGradient>
+		<linearGradient id="gradient2" x1="50%" y1="0%" x2="50%" y2="102.1174%">
+			<stop stop-color="#dbdbdb" stop-opacity="1" offset="0%"/>
+			<stop stop-color="#fcfcfc" stop-opacity="1" offset="28.0952%"/>
+			<stop stop-color="#e8e8e8" stop-opacity="1" offset="87.619%"/>
+			<stop stop-color="#ffffff" stop-opacity="1" offset="100%"/>
+		</linearGradient>
+		<linearGradient id="gradient3" x1="50%" y1="0%" x2="50%" y2="100%">
+			<stop stop-color="#000000" stop-opacity="1" offset="0%"/>
+			<stop stop-color="#404040" stop-opacity="0" offset="100%"/>
+		</linearGradient>
+	</defs>
+	<g id="Layer%201">
+		<rect x="141" y="400" width="33" height="180" fill="url(#gradient1)"/>
+		<g>
+			<path d="M 0 15 C 0 3.866 3.866 0 15 0 L 302 0 C 313.1339 0 317 3.866 317 15 L 317 440 C 317 451.1339 313.1339 455 302 455 L 15 455 C 3.866 455 0 451.1339 0 440 L 0 15 Z" fill="#dddddd"/>
+		</g>
+		<g>
+			<path opacity="0.902" d="M 6 17.3803 C 6 6.9111 6.9119 6 17.3902 6 L 299.6098 6 C 310.0881 6 311 6.9111 311 17.3803 L 311 437.6198 C 311 448.089 310.0881 449 299.6098 449 L 17.3902 449 C 6.9119 449 6 448.089 6 437.6198 L 6 17.3803 Z" stroke="#333333" stroke-width="2" fill="url(#gradient2)"/>
+		</g>
+		<rect opacity="0.3686" x="141" y="455" width="33" height="12" fill="url(#gradient3)"/>
+	</g>
+</svg>

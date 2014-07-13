@@ -69,7 +69,7 @@ $app->post('/locations', function() use ($app) {
 				'unit' => 'hr',
 			],
 			'rate' => [
-				'operational' => $parkingLocation->is_restricted,
+				'operational' => $parkingLocation->is_timed,
 				'value' => $parkingLocation->currentVehicleRate($vehicleType),
 				'currency' => 'aud',
 				'symbol' => '$',
@@ -93,13 +93,13 @@ $app->post('/locations', function() use ($app) {
 				'endDay' => $parkingTime->end_day,
 				'startTime' => [
 					'full' => date('g:ia', strtotime($parkingTime->start_time)),
-					'hour' => date('g', strtotime($parkingTime->start_time)),
+					'hours' => date('g', strtotime($parkingTime->start_time)),
 					'minutes' => date('i', strtotime($parkingTime->start_time)),
 					'suffix' => date('a', strtotime($parkingTime->start_time)),
 				],
 				'endTime' => [
 					'full' => date('g:iA', strtotime($parkingTime->end_time)),
-					'hour' => date('g', strtotime($parkingTime->end_time)),
+					'hours' => date('g', strtotime($parkingTime->end_time)),
 					'minutes' => date('i', strtotime($parkingTime->end_time)),
 					'suffix' => date('a', strtotime($parkingTime->end_time)),
 				],
